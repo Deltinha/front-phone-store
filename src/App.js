@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import UserContext from './contexts/UserContext';
 
-function App() {
+import GlobalStyle from './styles/GlobalStyle';
+import Routes from './Routes';
+
+export default function App() {
+  const [userInfo, setUserInfo] = useState('');
+  const infoFromLocalStorage = JSON.parse(localStorage.getItem('userInfo'));
+
+  useEffect(() => {
+    if (infoFromLocalStorage) setUserInfo(infoFromLocalStorage);
+  }, [userInfo.token]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{ userInfo, setUserInfo }}>
+      <Router>
+        <GlobalStyle />
+        <Routes />
+      </Router>
+    </UserContext.Provider>
+
   );
 }
-
-export default App;
