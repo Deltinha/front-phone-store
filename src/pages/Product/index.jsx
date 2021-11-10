@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import * as S from './style';
 import ProductBox from '../../components/productBox';
+import { getProductById } from '../../services/phone-store-api';
 
-// eslint-disable-next-line react/prop-types
-function Product({ productId }) {
+function Product() {
   const [product, setProduct] = useState(false);
+  const { productId } = useParams();
+
   useEffect(() => {
-    axios.get(`http://localhost:4000/product/${productId}`).then((res) => {
+    const productInfo = getProductById(productId);
+    productInfo.then((res) => {
       setProduct(res.data[0]);
+    }).catch(() => {
+      Swal.fire('Algo deu errado, por favor recarregue');
     });
   }, []);
 
-  //   const phone = [{
-  //     id: 1,
-  //     model: 'iPhone 7',
-  //     description: '',
-  //     brand: 'Apple',
-  //     color: 'Preto Matte',
-  //     value: 134900,
-  //     capacity: '32GB',
-  //     image: 'https://imagens.trocafone.com/images/phones/iphone7-black-1.jpg',
-  //   }];
   return (
     <S.Container>
       {(product)
