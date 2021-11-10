@@ -1,11 +1,11 @@
 import * as S from './style.js';
 
 export default function ProductCard({ product }) {
-  const { model, capacity, color, brand } = product;
+  const { model, capacity, color, brand, imageUrl } = product;
   const value = product.value / 100;
   return (
     <S.ProductCard>
-      <img src="https://imagens.trocafone.com/images/phones/dt-motorola-one-hyper-azul-frente.png" />
+      <img src={imageUrl} />
       <div>
         <S.ProductBrand>{brand}</S.ProductBrand>
         <S.ProductTitle>
