@@ -60,6 +60,6 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit;
     }
-    html { background: #e94692; }
+    html { background: #fff; }
 `;
 export default GlobalStyle;

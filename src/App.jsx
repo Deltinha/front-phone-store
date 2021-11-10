@@ -1,8 +1,9 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import UserContext from './contexts/UserContext';
+import UserContext from './contexts/userContext';
 
 import GlobalStyle from './styles/GlobalStyle';
+import Theme from './styles/Theme';
 import Routes from './Routes';
 
 export default function App() {
@@ -17,9 +18,9 @@ export default function App() {
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
       <Router>
         <GlobalStyle />
+        <Theme />
         <Routes />
       </Router>
     </UserContext.Provider>
-
   );
 }
