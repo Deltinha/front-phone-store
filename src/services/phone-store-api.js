@@ -11,4 +11,8 @@ function getProductById(id) {
   return axios.get(`${BASE_URL}/product/${id}`);
 }
 
-export { getProducts, getProductById };
+function createNewUser(body) {
+  return axios.post(`${BASE_URL}/user`, body);
+}
+
+export { getProducts, getProductById, createNewUser };

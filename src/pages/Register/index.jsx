@@ -1,6 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import axios from 'axios';
+import Swal from 'sweetalert2';
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { createNewUser } from '../../services/phone-store-api';
 // import { Link } from 'react-router-dom';
 import * as S from './style';
 
@@ -25,6 +27,8 @@ export default function Register() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
+  const history = useHistory();
+
   const goToStep2 = () => {
     setIsStep1(false);
     setIsStep2(true);
@@ -32,7 +36,8 @@ export default function Register() {
   const goToStep3 = () => {
     setIsStep2(false);
   };
-  const submitForm = () => {
+  const submitForm = (e) => {
+    e.preventDefault();
     const body = {
       firstName,
       lastName,
@@ -48,7 +53,11 @@ export default function Register() {
       cpf,
       phoneNumber,
     };
-    axios.post('http://localhost:4000/user', body);
+    createNewUser(body).then(() => {
+      history.push('/login');
+    }).catch(() => {
+      Swal.fire('Algo deu errado, por favor recarregue');
+    });
   };
   return (
     <S.Center>
