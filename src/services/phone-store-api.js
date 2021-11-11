@@ -8,7 +8,7 @@ function getProducts() {
 }
 
 function getProductById(id) {
-  return axios.get(`http://localhost:4000/product/${id}`);
+  return axios.get(`${BASE_URL}/product/${id}`);
 }
 
 export { getProducts, getProductById };

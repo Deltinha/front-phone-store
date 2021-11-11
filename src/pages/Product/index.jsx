@@ -13,7 +13,8 @@ function Product() {
     const productInfo = getProductById(productId);
     productInfo.then((res) => {
       setProduct(res.data[0]);
-    }).catch(() => {
+    }).catch((error) => {
+      console.log(error.message);
       Swal.fire('Algo deu errado, por favor recarregue');
     });
   }, []);
