@@ -1,4 +1,5 @@
 /* eslint-disable no-nested-ternary */
+import axios from 'axios';
 import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import * as S from './style';
@@ -32,6 +33,22 @@ export default function Register() {
     setIsStep2(false);
   };
   const submitForm = () => {
+    const body = {
+      firstName,
+      lastName,
+      email,
+      password,
+      cep,
+      state,
+      city,
+      neighborhood,
+      street,
+      addressNumber,
+      complement,
+      cpf,
+      phoneNumber,
+    };
+    axios.post('http://localhost:4000/user', body);
   };
   return (
     <S.Center>
