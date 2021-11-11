@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { getProducts } from '../../services/phone-store-api';
 import ProductCard from '../ProductCard';
@@ -27,8 +27,8 @@ export default function ProductsWrapper() {
           </S.LoaderWrapper>
         )}
         {products.length > 0 && (
-          products.map((product, index) => (
-            <ProductCard key={index} product={product} />
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           )))}
         {products.length === 0 && !isLoading && (
           <S.NoProductsFound>Nenhum produto encontrado</S.NoProductsFound>
