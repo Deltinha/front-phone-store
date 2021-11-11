@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000';
@@ -8,4 +7,8 @@ function getProducts() {
   return promise;
 }
 
-export { getProducts };
+function getProductById(id) {
+  return axios.get(`http://localhost:4000/product/${id}`);
+}
+
+export { getProducts, getProductById };
