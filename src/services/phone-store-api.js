@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-let BASE_URL = process.env.NODE_ENV === 'development'
+const BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:4000'
   : 'https://phone-store-driven.herokuapp.com';
-
-BASE_URL = 'https://phone-store-driven.herokuapp.com';
 
 function getProducts() {
   const promise = axios.get(`${BASE_URL}/products`);
