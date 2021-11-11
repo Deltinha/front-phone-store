@@ -4,6 +4,7 @@ import {
 import React from 'react';
 import Product from './pages/Product';
 import Header from './components/header';
+import HomePage from './pages/HomePage';
 
 export default function Routes() {
   return (
@@ -12,7 +13,9 @@ export default function Routes() {
       <Route exact path="/sign-up" />
       <>
         <Header />
-        <Route exact path="/" />
+        <Route exact path="/">
+          <HomePage />
+        </Route>
         <Route exact path="/product/:productId">
           <Product />
         </Route>

@@ -1,3 +1,4 @@
+import React from 'react';
 import CategoriesSideBar from '../../components/CategoriesSidebar';
 import ProductsWrapper from '../../components/ProductsWrapper';
 import * as S from './style';

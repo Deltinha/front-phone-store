@@ -11,6 +11,7 @@ const ProductCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  cursor: pointer;
 
   > img {
     height: 150px;
@@ -26,21 +27,23 @@ const ProductCard = styled.div`
 const ProductBrand = styled.span`
   font-size: 12px;
   margin-bottom: 8px;
+  color: var(--text);
 `;
 
 const ProductTitle = styled.div`
   font-size: 16px;
   margin-bottom: 8px;
+  color: var(--text);
 `;
 
 const PriceTitle = styled.span`
   font-size: 11px;
-  color: grey;
+  color: var(--primary);
   margin-bottom: 3px;
 `;
 
 const Price = styled.div`
-  color: #ff8800;
+  color: var(--primary);
   font-weight: 700;
   display: flex;
   align-items: center;
