@@ -11,6 +11,7 @@ const ProductCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  cursor: pointer;
 
   > img {
     height: 150px;

@@ -1,15 +1,29 @@
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import getColorName from '../../services/color-name-api.js';
 import * as S from './style.js';
 
 export default function ProductCard({ product }) {
-  const { model, capacity, color, brand, imageUrl } = product;
+  const { model, capacity, color, brand, url, id } = product;
   const value = product.value / 100;
+  const [colorName, setColorName] = useState('');
+  const history = useHistory();
+
+  useEffect(() => {
+    getColorName(color)
+      .then((res) => {
+        setColorName(res.data?.colors[0].name);
+      })
+      .catch(() => setColorName(''));
+  }, []);
+
   return (
-    <S.ProductCard>
-      <img src={imageUrl} />
+    <S.ProductCard onClick={() => history.push(`/products/${id}`)}>
+      <img src={url} />
       <div>
         <S.ProductBrand>{brand}</S.ProductBrand>
         <S.ProductTitle>
-          {model} {capacity} {color}
+          {model} {capacity} {colorName}
         </S.ProductTitle>
         <S.PriceTitle>A partir de</S.PriceTitle>
         <S.Price>
