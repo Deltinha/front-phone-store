@@ -6,11 +6,14 @@ import Product from './pages/Product';
 import Header from './components/header';
 import Register from './pages/Register';
 import HomePage from './pages/HomePage';
+import Login from './pages/Login';
 
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/login" />
+      <Route exact path="/login">
+        <Login />
+      </Route>
       <Route exact path="/register">
         <Register />
       </Route>
