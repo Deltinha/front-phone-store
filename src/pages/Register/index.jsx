@@ -1,9 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import Swal from 'sweetalert2';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import { createNewUser } from '../../services/phone-store-api';
-// import { Link } from 'react-router-dom';
 import * as S from './style';
 
 export default function Register() {
@@ -27,14 +27,76 @@ export default function Register() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
 
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [passwordsMatch, setPasswordsMatch] = useState(false);
+
+  // const [firstNameIsValid, setFirstNameIsValid] = useState(false);
+  // const [lastNameIsValid, setLastNameIsValid] = useState(false);
+  // const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
+  // const [cpfIsValid, setCpfIsValid] = useState(false);
   const history = useHistory();
 
+  const [basicInfoIsValid, setBasicInfoIsValid] = useState(false);
+  const [addressIsValid, setAdressIsValid] = useState(false);
+
+  useEffect(() => {
+    setEmailIsValid(
+      !!email.match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      ),
+    );
+    setPasswordIsValid(
+      !!(password.length >= 6 && password.length <= 15),
+    );
+    setPasswordsMatch(
+      !!(password === repeatPassword),
+    );
+    setBasicInfoIsValid(
+      !!(
+        firstName
+        && lastName
+        && !!phoneNumber.match(/^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/)
+        && !!cpf.match(/([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/)
+      ),
+    );
+    setAdressIsValid(
+      !!(
+        !!cep.match(/^\d{5}-\d{3}$/)
+        && state
+        && city
+        && neighborhood
+        && street
+        && !!addressNumber.match(/^[0-9]*$/)
+      ),
+    );
+  }, [firstName,
+    lastName,
+    email,
+    password,
+    repeatPassword,
+    cep,
+    state,
+    city,
+    neighborhood,
+    street,
+    addressNumber,
+    cpf,
+    phoneNumber,
+  ]);
+
   const goToStep2 = () => {
-    setIsStep1(false);
-    setIsStep2(true);
+    if (
+      emailIsValid
+      && passwordIsValid
+      && passwordsMatch
+    ) {
+      setIsStep1(false);
+      setIsStep2(true);
+    }
   };
   const goToStep3 = () => {
-    setIsStep2(false);
+    if (basicInfoIsValid) setIsStep2(false);
   };
   const submitForm = (e) => {
     e.preventDefault();
@@ -53,11 +115,14 @@ export default function Register() {
       cpf,
       phoneNumber,
     };
-    createNewUser(body).then(() => {
-      history.push('/login');
-    }).catch(() => {
-      Swal.fire('Algo deu errado, por favor recarregue');
-    });
+
+    if (addressIsValid) {
+      createNewUser(body).then(() => {
+        history.push('/login');
+      }).catch(() => {
+        Swal.fire('Algo deu errado, por favor recarregue');
+      });
+    }
   };
   return (
     <S.Center>
@@ -77,13 +142,15 @@ export default function Register() {
                 value={email}
                 onChange={(event) => setEmail(event.currentTarget.value)}
                 autoComplete="off"
+                required
               />
               <input
                 label="Password"
                 type="password"
-                placeholder="Senha"
+                placeholder="Senha entre 6 e 15 caracteres"
                 value={password}
                 onChange={(event) => setPassword(event.currentTarget.value)}
+                required
               />
               <input
                 label="Repeat Password"
@@ -91,6 +158,7 @@ export default function Register() {
                 placeholder="Insira a senha novamente"
                 value={repeatPassword}
                 onChange={(event) => setRepeatPassword(event.currentTarget.value)}
+                required
               />
               <button type="button" onClick={goToStep2}>Avançar</button>
             </S.DivRegister>
@@ -103,6 +171,7 @@ export default function Register() {
                   placeholder="Seu nome"
                   value={firstName}
                   onChange={(event) => setFirstName(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="Last Name"
@@ -110,6 +179,7 @@ export default function Register() {
                   placeholder="Sobrenome"
                   value={lastName}
                   onChange={(event) => setLastName(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="Phone Number"
@@ -117,6 +187,7 @@ export default function Register() {
                   placeholder="Telefone"
                   value={phoneNumber}
                   onChange={(event) => setPhoneNumber(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="CPF"
@@ -124,6 +195,7 @@ export default function Register() {
                   placeholder="CPF"
                   value={cpf}
                   onChange={(event) => setCpf(event.currentTarget.value)}
+                  required
                 />
                 <button type="button" onClick={goToStep3}>Confirmar informações</button>
 
@@ -138,6 +210,7 @@ export default function Register() {
                   placeholder="CEP"
                   value={cep}
                   onChange={(event) => setCep(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="Street"
@@ -145,6 +218,7 @@ export default function Register() {
                   placeholder="Endereço"
                   value={street}
                   onChange={(event) => setStreet(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="Address Number"
@@ -152,6 +226,7 @@ export default function Register() {
                   placeholder="Número da Residência"
                   value={addressNumber}
                   onChange={(event) => setAddressNumber(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="Complement"
@@ -166,6 +241,7 @@ export default function Register() {
                   placeholder="Bairro"
                   value={neighborhood}
                   onChange={(event) => setNeighborhood(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="City"
@@ -173,6 +249,7 @@ export default function Register() {
                   placeholder="Cidade"
                   value={city}
                   onChange={(event) => setCity(event.currentTarget.value)}
+                  required
                 />
                 <input
                   label="State"
@@ -180,6 +257,7 @@ export default function Register() {
                   placeholder="Estado"
                   value={state}
                   onChange={(event) => setState(event.currentTarget.value)}
+                  required
                 />
                 <button type="submit" onClick={submitForm}>Criar conta</button>
               </S.DivRegister>
