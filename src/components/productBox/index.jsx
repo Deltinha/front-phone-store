@@ -4,12 +4,20 @@ import * as S from './style';
 
 export default function ProductBox({ product }) {
   const {
+<<<<<<< HEAD
     model, capacity, value, description, color, brand, productImages,
   } = product;
+=======
+    model, capacity, color, value, description, brand, productImages,
+  } = product;
+  const [image] = productImages;
+  const [colorName, setColorName] = useState('');
+>>>>>>> ed96d1f25b3698f7de04566842441151d15d00ec
 
   const firstImage = productImages.find((img) => img.perspective === 'front');
 
   return (
+<<<<<<< HEAD
     <S.ProductDetail>
       <S.ProductImage src={firstImage.url} />
       <div>
@@ -23,5 +31,23 @@ export default function ProductBox({ product }) {
         {(color) ? <p>{`Cor: ${color}`}</p> : ''}
       </div>
     </S.ProductDetail>
+=======
+    <>
+      <S.ProductDetail>
+        <S.ProductImage src={image.url} />
+        <div>
+          <S.Title>{`${model} ${capacity} ${colorName}`}</S.Title>
+          <h3>{`R$ ${(value / 100).toFixed(2)}`}</h3>
+          <p>{`Em até 10x de R$ ${(value / 1000).toFixed(2)} sem juros`}</p>
+          <p>{description}</p>
+          <p>{`Marca: ${brand}`}</p>
+          <p>Tipo de produto: Smartphone</p>
+          <p>{` Capacidade de armazenamento da memória: ${capacity}`}</p>
+          <p>{`Cor: ${colorName}`}</p>
+
+        </div>
+      </S.ProductDetail>
+    </>
+>>>>>>> ed96d1f25b3698f7de04566842441151d15d00ec
   );
 }

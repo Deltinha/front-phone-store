@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import { getProducts } from '../../services/phone-store-api';
 import ProductCard from '../ProductCard';
 import * as S from './style';
 
-export default function ProductsWrapper() {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function ProductsWrapper({
+  products, setProducts, setIsLoading, isLoading,
+}) {
   useEffect(() => {
     getProducts()
       .then((res) => {
