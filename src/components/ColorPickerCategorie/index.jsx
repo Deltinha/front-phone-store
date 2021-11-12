@@ -3,11 +3,15 @@
 import React from 'react';
 import * as S from './style';
 
-export default function ColorPickerCategorie({ colors }) {
+export default function ColorPickerCategorie({ colors, updateProducts }) {
   return (
     <S.ColorPickerCategorie>
       {colors.map((color, index) => (
-        <S.ColorCircle key={index} color={color} />
+        <S.ColorCircle
+          onClick={() => updateProducts('color', color)}
+          key={index}
+          color={color}
+        />
       ))}
     </S.ColorPickerCategorie>
   );

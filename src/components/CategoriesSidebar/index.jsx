@@ -1,6 +1,11 @@
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
-import { getCategories } from '../../services/phone-store-api';
+import { getCategories, getProductsByCategorie } from '../../services/phone-store-api';
 import ColorPickerCategorie from '../ColorPickerCategorie';
 import * as S from './style';
 
@@ -18,8 +23,20 @@ function categoriesOrganizer(categories) {
   return sortedCategories.concat(categories);
 }
 
-export default function CategoriesSideBar() {
+export default function CategoriesSideBar({
+  setProducts, setIsLoading,
+}) {
   const [categories, setCategories] = useState([]);
+
+  function updateProducts(categorie, value) {
+    setIsLoading(true);
+    getProductsByCategorie({ categorie, value })
+      .then((res) => {
+        setProducts(res.data);
+        setIsLoading(false);
+      })
+      .catch(() => setIsLoading(false));
+  }
 
   useEffect(() => {
     getCategories()
@@ -35,7 +52,7 @@ export default function CategoriesSideBar() {
           return (
             <div key={index}>
               <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
-              <ColorPickerCategorie colors={categorie.names} />
+              <ColorPickerCategorie colors={categorie.names} updateProducts={updateProducts} />
             </div>
           );
         }
@@ -43,7 +60,12 @@ export default function CategoriesSideBar() {
           <div key={index}>
             <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
             {categorie.names.map((name, key) => (
-              <span key={key}>{name}</span>
+              <S.CategorieName
+                key={key}
+                onClick={() => updateProducts(categorie.type, name)}
+              >
+                {name}
+              </S.CategorieName>
             ))}
           </div>
         );

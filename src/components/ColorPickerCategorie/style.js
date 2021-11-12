@@ -13,4 +13,5 @@ export const ColorCircle = styled.div`
   border-radius: 50%;
   background-color: ${({ color }) => (color)};
   border: black 1px solid;
+  cursor: pointer;
 `;

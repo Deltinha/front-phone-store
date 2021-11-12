@@ -18,6 +18,7 @@ const Sidebar = styled.div`
     flex-direction: column;
     gap: 5px;
   }
+
 `;
 
 const CategoriesTitle = styled.span`
@@ -29,4 +30,9 @@ const CategoriesTitle = styled.span`
   color: var(--primary);
 `;
 
-export { Sidebar, CategoriesTitle };
+const CategorieName = styled.span`
+  font-size: 15px;
+  cursor: pointer;
+`;
+
+export { Sidebar, CategoriesTitle, CategorieName };

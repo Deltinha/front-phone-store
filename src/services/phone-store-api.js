@@ -9,6 +9,12 @@ function getProducts() {
   return promise;
 }
 
+export function getProductsByCategorie({ categorie, value }) {
+  const colorCode = value.replace('#', '');
+  const promise = axios.get(`${BASE_URL}/products?${categorie}=${colorCode}`);
+  return promise;
+}
+
 function getProductById(id) {
   return axios.get(`${BASE_URL}/products/${id}`);
 }
