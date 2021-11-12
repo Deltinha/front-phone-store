@@ -5,8 +5,9 @@ import getColorName from '../../services/color-name-api';
 
 export default function ProductBox({ product }) {
   const {
-    model, capacity, color, value, description, brand, url,
+    model, capacity, color, value, description, brand, productImages,
   } = product;
+  const [image] = productImages;
   const [colorName, setColorName] = useState('');
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function ProductBox({ product }) {
   return (
     <>
       <S.ProductDetail>
-        <S.ProductImage src={url} />
+        <S.ProductImage src={image.url} />
         <div>
           <S.Title>{`${model} ${capacity} ${colorName}`}</S.Title>
           <h3>{`R$ ${(value / 100).toFixed(2)}`}</h3>
