@@ -6,7 +6,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { getCategories, getProductsByCategorie } from '../../services/phone-store-api';
-import ColorPickerCategorie from '../ColorPickerCategorie';
+import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
 
 function categoriesOrganizer(categories) {
