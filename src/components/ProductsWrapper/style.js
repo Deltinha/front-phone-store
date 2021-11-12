@@ -35,4 +35,6 @@ const LoaderWrapper = styled.div`
   justify-content: center;
 `;
 
-export { ProductsWrapper, ProductsTitle, ProductsList, NoProductsFound, LoaderWrapper };
+export {
+  ProductsWrapper, ProductsTitle, ProductsList, NoProductsFound, LoaderWrapper,
+};
