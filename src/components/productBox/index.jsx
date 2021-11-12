@@ -30,7 +30,7 @@ export default function ProductBox({ product }) {
         {(brand) ? <p>{`Marca: ${brand}`}</p> : ''}
         <p>Tipo de produto: Smartphone</p>
         {(capacity) ? <p>{` Capacidade de armazenamento da memória: ${capacity}`}</p> : ''}
-        {(color) ? <p>{`Cor: ${color}`}</p> : ''}
+        {(colorName) ? <p>{`Cor: ${colorName}`}</p> : ''}
       </div>
     </S.ProductDetail>
   );
