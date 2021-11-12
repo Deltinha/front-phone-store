@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import * as S from './style';
 
-export default function ProductBox({ ...product }) {
+export default function ProductBox({ product }) {
   const {
     model, capacity, color, value, description, brand, productImages,
   } = product;
