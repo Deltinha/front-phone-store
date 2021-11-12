@@ -29,6 +29,7 @@ export default function CategoriesSideBar({
   const [categories, setCategories] = useState([]);
 
   function updateProducts(categorie, value) {
+    setProducts([]);
     setIsLoading(true);
     getProductsByCategorie({ categorie, value })
       .then((res) => {
