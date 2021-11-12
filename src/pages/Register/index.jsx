@@ -3,7 +3,7 @@
 import Swal from 'sweetalert2';
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import { createNewUser } from '../../services/phone-store-api';
+import { createNewUser } from '../../services/user.api';
 import * as S from './style';
 
 export default function Register() {
