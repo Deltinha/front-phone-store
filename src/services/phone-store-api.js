@@ -13,4 +13,8 @@ function getProductById(id) {
   return axios.get(`${BASE_URL}/products/${id}`);
 }
 
-export { getProducts, getProductById };
+function getCategories() {
+  return axios.get(`${BASE_URL}/categories`);
+}
+
+export { getProducts, getProductById, getCategories };
