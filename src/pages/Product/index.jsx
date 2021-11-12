@@ -12,7 +12,7 @@ function Product() {
   useEffect(() => {
     const productInfo = getProductById(productId);
     productInfo.then((res) => {
-      setProduct(res.data[0]);
+      setProduct(res.data);
     }).catch(() => {
       Swal.fire('Algo deu errado, por favor recarregue');
     });
