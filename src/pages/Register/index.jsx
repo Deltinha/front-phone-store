@@ -118,10 +118,8 @@ export default function Register() {
 
     if (addressIsValid) {
       createNewUser(body).then(() => {
-        console.log(body);
         history.push('/login');
       }).catch((error) => {
-        console.log(error);
         Swal.fire('Algo deu errado, por favor recarregue');
       });
     } else {
