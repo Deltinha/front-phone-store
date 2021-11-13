@@ -62,7 +62,7 @@ export default function Register() {
     );
     setAdressIsValid(
       !!(
-        !!cep.match(/^\d{5}-\d{3}$/)
+        !!cep.match(/^[0-9]{8}\s/)
         && state
         && city
         && neighborhood
