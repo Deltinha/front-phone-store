@@ -18,7 +18,7 @@ export default function ProductsWrapper() {
       <S.ProductsList>
         {areProductsLoading && (
           <S.LoaderWrapper>
-            <Loader type="Oval" color="#00BFFF" height={110} width={110} />
+            <Loader type="Oval" color="#ff2768" height={110} width={110} />
           </S.LoaderWrapper>
         )}
         {products.length > 0 && (
