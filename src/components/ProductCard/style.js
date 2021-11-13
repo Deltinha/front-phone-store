@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ProductCard = styled.div`
   width: 190px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-  border: solid 1px #a7a7a7;
+  border: solid 1px var(--secondary);
   box-sizing: border-box;
   border-radius: 4px;
   background-color: white;

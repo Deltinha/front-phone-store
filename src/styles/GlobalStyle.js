@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
         color: inherit;
     }
     html {
-        background: #fff;
+        background: #fff6f6;
         display:flex;
         justify-content:center; }
 `;
