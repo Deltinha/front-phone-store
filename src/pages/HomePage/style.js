@@ -5,7 +5,7 @@ const HomePage = styled.div`
   width: 1170px;
   display: flex;
   justify-content: space-between;
-  padding: 8rem 6rem;
+  padding: 8rem;
   box-sizing: initial !important;
 `;
 

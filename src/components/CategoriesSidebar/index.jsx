@@ -25,8 +25,7 @@ function categoriesOrganizer(categories) {
 }
 
 export default function CategoriesSideBar() {
-  const { setAreProductsLoading } = useContext(UserContext);
-  const { setProducts } = useContext(UserContext);
+  const { setAreProductsLoading, setProducts } = useContext(UserContext);
   const [categories, setCategories] = useState([]);
 
   function updateProducts(categorie, value) {

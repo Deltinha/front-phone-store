@@ -1,16 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   RiShoppingCart2Fill, RiUserAddFill, RiLoginBoxFill, RiHomeFill, RiLogoutBoxFill,
 } from 'react-icons/ri';
 import { useHistory } from 'react-router-dom';
+import UserContext from '../../contexts/userContext';
 import * as S from './style';
 
 export default function Header() {
   const history = useHistory();
+  const { loadProducts } = useContext(UserContext);
+
+  function returnToHome() {
+    history.push('/');
+    loadProducts();
+  }
+
   return (
     <S.TopBar>
-      <S.LeftButtonsWrapper onClick={() => history.push('/')}>
+      <S.LeftButtonsWrapper onClick={() => returnToHome()}>
         <S.HomeButtonWrapper>
           <RiHomeFill />
         </S.HomeButtonWrapper>

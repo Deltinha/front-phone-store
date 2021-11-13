@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // eslint-disable-next-line import/prefer-default-export
 export const TopBar = styled.div`
     position: fixed;
+    z-index: 5;
     width: 100%;
     height: 4rem;
     top: 0;
@@ -11,6 +12,7 @@ export const TopBar = styled.div`
     text-align: center;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
 
     & svg {
         font-size: 30px;
