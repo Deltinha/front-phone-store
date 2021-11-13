@@ -62,7 +62,7 @@ export default function Register() {
     );
     setAdressIsValid(
       !!(
-        !!cep.match(/^\d{5}-\d{3}$/)
+        !!cep.match(/^[0-9]{8}$/)
         && state
         && city
         && neighborhood
@@ -119,9 +119,11 @@ export default function Register() {
     if (addressIsValid) {
       createNewUser(body).then(() => {
         history.push('/login');
-      }).catch(() => {
+      }).catch((error) => {
         Swal.fire('Algo deu errado, por favor recarregue');
       });
+    } else {
+      Swal.fire('Informações inválidas');
     }
   };
   return (
@@ -136,7 +138,7 @@ export default function Register() {
           {isStep1 ? (
             <S.DivRegister>
               <input
-                label="E-mail"
+                key="E-mail"
                 type="text"
                 placeholder="E-mail"
                 value={email}
@@ -145,7 +147,7 @@ export default function Register() {
                 required
               />
               <input
-                label="Password"
+                key="Password"
                 type="password"
                 placeholder="Senha entre 6 e 15 caracteres"
                 value={password}
@@ -153,7 +155,7 @@ export default function Register() {
                 required
               />
               <input
-                label="Repeat Password"
+                key="Repeat Password"
                 type="password"
                 placeholder="Insira a senha novamente"
                 value={repeatPassword}
@@ -166,7 +168,7 @@ export default function Register() {
             ? (
               <S.DivRegister>
                 <input
-                  label="First Name"
+                  key="First Name"
                   type="text"
                   placeholder="Seu nome"
                   value={firstName}
@@ -174,7 +176,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="Last Name"
+                  key="Last Name"
                   type="text"
                   placeholder="Sobrenome"
                   value={lastName}
@@ -182,7 +184,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="Phone Number"
+                  key="Phone Number"
                   type="text"
                   placeholder="Telefone"
                   value={phoneNumber}
@@ -190,7 +192,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="CPF"
+                  key="CPF"
                   type="text"
                   placeholder="CPF"
                   value={cpf}
@@ -205,7 +207,7 @@ export default function Register() {
               <S.DivRegister>
 
                 <input
-                  label="CEP"
+                  key="CEP"
                   type="text"
                   placeholder="CEP"
                   value={cep}
@@ -213,7 +215,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="Street"
+                  key="Street"
                   type="text"
                   placeholder="Endereço"
                   value={street}
@@ -221,7 +223,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="Address Number"
+                  key="Address Number"
                   type="text"
                   placeholder="Número da Residência"
                   value={addressNumber}
@@ -229,14 +231,14 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="Complement"
+                  key="Complement"
                   type="text"
                   placeholder="Complemento (opcional)"
                   value={complement}
                   onChange={(event) => setComplement(event.currentTarget.value)}
                 />
                 <input
-                  label="Neighborhood"
+                  key="Neighborhood"
                   type="text"
                   placeholder="Bairro"
                   value={neighborhood}
@@ -244,7 +246,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="City"
+                  key="City"
                   type="text"
                   placeholder="Cidade"
                   value={city}
@@ -252,7 +254,7 @@ export default function Register() {
                   required
                 />
                 <input
-                  label="State"
+                  key="State"
                   type="text"
                   placeholder="Estado"
                   value={state}
