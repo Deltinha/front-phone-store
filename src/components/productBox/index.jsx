@@ -25,15 +25,7 @@ export default function ProductBox({ product }) {
 
   return (
     <S.ProductDetail>
-      <S.ProductImage
-        src={firstImage.url}
-        onClick={() => {
-          alert('clicou');
-          const data = cart;
-          data.push(product);
-          setCart(data);
-        }}
-      />
+      <S.ProductImage src={firstImage.url} />
       <div>
         {(value) && <h3>{`R$ ${(value / 100).toFixed(2)}`}</h3>}
         <S.ProductInfo>
@@ -41,7 +33,7 @@ export default function ProductBox({ product }) {
           {(model) ? <S.Title>{`${model} ${capacity || ''} ${colorName || ''}`}</S.Title> : ''}
           <h4>{description}</h4>
         </S.ProductInfo>
-        <AddToCartButton />
+        <AddToCartButton product={product} />
       </div>
     </S.ProductDetail>
   );
