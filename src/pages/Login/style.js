@@ -22,12 +22,17 @@ export const Logo = styled.img`
 `;
 
 export const Register = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   width: 100%;
   text-align: center;
   align-items: center;
   margin-top: 1rem;
+  a {
+    margin-top: 0;
+    color: var(--detail);
+    font-size: 12px;
+  }
 `;
 
 export const Form = styled.form`

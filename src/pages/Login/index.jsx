@@ -1,12 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import Swal from 'sweetalert2';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { login } from '../../services/user.api';
 import * as S from './style';
+import UserContext from '../../contexts/userContext';
 
 export default function Login() {
+  const { setUserInfo } = useContext(UserContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -29,9 +32,11 @@ export default function Login() {
     };
 
     if (emailIsValid) {
-      login(body).then(() => {
-        // history.push('/cart');
-        history.push('/'); // provisorio
+      login(body).then(({ data: { token, userId } }) => {
+        const userInfo = { token, userId };
+        setUserInfo(userInfo);
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+        history.push('/');
       }).catch(() => {
         Swal.fire('Algo deu errado, por favor recarregue');
       });
@@ -68,9 +73,9 @@ export default function Login() {
             <button type="submit" onClick={submitForm}>Entrar</button>
           </S.DivRegister>
         </S.Form>
-        {/* <S.Register>
+        <S.Register>
           <Link to="/register">Ainda não tem uma conta? Registre-se!</Link>
-        </S.Register> */}
+        </S.Register>
       </S.Content>
     </S.Center>
   );
