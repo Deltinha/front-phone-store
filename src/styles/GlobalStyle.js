@@ -53,13 +53,14 @@ const GlobalStyle = createGlobalStyle`
     }
     button{
         border: none;
+        padding: 0;
     }
     a, :link{
         text-decoration: none;
         color: inherit;
     }
     html {
-        background: #fff;
+        background: #fffce3;
         display:flex;
         justify-content:center; }
 `;

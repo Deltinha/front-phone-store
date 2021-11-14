@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Route, Switch,
 } from 'react-router-dom';
@@ -11,14 +12,14 @@ import Login from './pages/Login';
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/login">
-        <Login />
-      </Route>
-      <Route exact path="/register">
-        <Register />
-      </Route>
       <>
         <Header />
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/register">
+          <Register />
+        </Route>
         <Route exact path="/">
           <HomePage />
         </Route>

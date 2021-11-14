@@ -1,20 +1,14 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import { getProducts } from '../../services/phone-store-api';
+import ProductsContext from '../../contexts/productsContext';
 import ProductCard from '../ProductCard';
 import * as S from './style';
 
-export default function ProductsWrapper({
-  products, setProducts, setIsLoading, isLoading,
-}) {
+export default function ProductsWrapper() {
+  const { areProductsLoading, products, loadProducts } = useContext(ProductsContext);
   useEffect(() => {
-    getProducts()
-      .then((res) => {
-        setProducts(res.data);
-        setIsLoading(false);
-      })
-      .catch(() => setIsLoading(false));
+    loadProducts();
   }, []);
   return (
     <S.ProductsWrapper>
@@ -22,16 +16,16 @@ export default function ProductsWrapper({
         <span>Celulares em oferta</span>
       </S.ProductsTitle>
       <S.ProductsList>
-        {isLoading && (
+        {areProductsLoading && (
           <S.LoaderWrapper>
-            <Loader type="Oval" color="#00BFFF" height={110} width={110} />
+            <Loader type="Oval" color="#ff2768" height={110} width={110} />
           </S.LoaderWrapper>
         )}
         {products.length > 0 && (
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           )))}
-        {products.length === 0 && !isLoading && (
+        {products.length === 0 && !areProductsLoading && (
           <S.NoProductsFound>Nenhum produto encontrado</S.NoProductsFound>
         )}
       </S.ProductsList>

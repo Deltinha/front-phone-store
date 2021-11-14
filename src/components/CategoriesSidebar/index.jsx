@@ -4,7 +4,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import ProductsContext from '../../contexts/productsContext';
 import { getCategories, getProductsByCategorie } from '../../services/phone-store-api';
 import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
@@ -23,20 +24,19 @@ function categoriesOrganizer(categories) {
   return sortedCategories.concat(categories);
 }
 
-export default function CategoriesSideBar({
-  setProducts, setIsLoading,
-}) {
+export default function CategoriesSideBar() {
+  const { setAreProductsLoading, setProducts } = useContext(ProductsContext);
   const [categories, setCategories] = useState([]);
 
   function updateProducts(categorie, value) {
     setProducts([]);
-    setIsLoading(true);
+    setAreProductsLoading(true);
     getProductsByCategorie({ categorie, value })
       .then((res) => {
         setProducts(res.data);
-        setIsLoading(false);
+        setAreProductsLoading(false);
       })
-      .catch(() => setIsLoading(false));
+      .catch(() => setAreProductsLoading(false));
   }
 
   useEffect(() => {
