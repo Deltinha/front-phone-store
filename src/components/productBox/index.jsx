@@ -1,14 +1,10 @@
-/* eslint-disable react/prop-types */
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import getColorName from '../../services/color-name-api';
 import AddToCartButton from '../AddToCartButton';
-import CartContext from '../../contexts/cartContext';
 
 export default function ProductBox({ product }) {
   const [colorName, setColorName] = useState('');
-  // eslint-disable-next-line no-unused-vars
-  const { cart, setCart } = useContext(CartContext);
 
   const {
     model, capacity, value, description, color, brand, productImages,

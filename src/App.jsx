@@ -16,6 +16,12 @@ export default function App() {
   const [products, setProducts] = useState([]);
   const [areProductsLoading, setAreProductsLoading] = useState(true);
 
+  function addToCart(product) {
+    const data = cart;
+    data.push(product);
+    setCart(data);
+  }
+
   function loadProducts() {
     getProducts()
       .then((res) => {
@@ -40,6 +46,7 @@ export default function App() {
       <CartContext.Provider value={{
         cart,
         setCart,
+        addToCart,
       }}
       >
         <Router>
