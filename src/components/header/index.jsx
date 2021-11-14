@@ -5,12 +5,12 @@ import {
 } from 'react-icons/ri';
 import { BsCartFill } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
-import UserContext from '../../contexts/userContext';
+import ProductsContext from '../../contexts/productsContext';
 import * as S from './style';
 
 export default function Header() {
   const history = useHistory();
-  const { loadProducts } = useContext(UserContext);
+  const { loadProducts } = useContext(ProductsContext);
 
   function returnToHome() {
     history.push('/');
