@@ -5,6 +5,7 @@ import {
 } from 'react-icons/ri';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../contexts/userContext';
+import CheckoutButton from '../CheckoutButton';
 import * as S from './style';
 
 export default function Header() {
@@ -25,6 +26,7 @@ export default function Header() {
         <span>
           PhoneStore
         </span>
+        <CheckoutButton />
       </S.LeftButtonsWrapper>
       <S.RightButtonsWrapper>
         <S.RegisterButtonWrapper onClick={() => history.push('/register')}>
