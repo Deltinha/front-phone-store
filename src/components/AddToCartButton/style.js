@@ -1,7 +1,6 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-export const AddToCartButton = styled.button`
+export const AddToCartButton = styled.div`
     display: flex;
     background-color: #fdac75;
     width: 230px;

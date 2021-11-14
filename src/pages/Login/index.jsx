@@ -8,7 +8,7 @@ import * as S from './style';
 import UserContext from '../../contexts/userContext';
 
 export default function Login() {
-  const { setUserInfo } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +16,11 @@ export default function Login() {
   const [emailIsValid, setEmailIsValid] = useState(false);
 
   const history = useHistory();
+
+  if (user && user.token) {
+    history.push('/');
+    Swal.fire('Você já está conectado, para entrar com uma conta diferente, faça logout.');
+  }
 
   useEffect(() => {
     setEmailIsValid(
@@ -32,10 +37,8 @@ export default function Login() {
     };
 
     if (emailIsValid) {
-      login(body).then(({ data: { token, userId } }) => {
-        const userInfo = { token, userId };
-        setUserInfo(userInfo);
-        localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      login(body).then((res) => {
+        setUser(res.data);
         history.push('/');
       }).catch(() => {
         Swal.fire('Algo deu errado, por favor recarregue');
@@ -74,7 +77,7 @@ export default function Login() {
           </S.DivRegister>
         </S.Form>
         <S.Register>
-          <Link to="/register">Ainda não tem uma conta? Registre-se!</Link>
+          <Link to="/register">Ainda não tem uma conta? Cadastre-se!</Link>
         </S.Register>
       </S.Content>
     </S.Center>

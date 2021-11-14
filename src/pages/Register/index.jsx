@@ -1,12 +1,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import Swal from 'sweetalert2';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { createNewUser } from '../../services/user.api';
 import * as S from './style';
+import UserContext from '../../contexts/userContext';
 
 export default function Register() {
+  const history = useHistory();
+
+  const { user } = useContext(UserContext);
+
+  if (user && user.token) {
+    history.push('/');
+    Swal.fire('Você já está conectado, para entrar com uma conta diferente, faça logout.');
+  }
+
   const [isStep1, setIsStep1] = useState(true);
   const [isStep2, setIsStep2] = useState(false);
 
@@ -35,7 +45,6 @@ export default function Register() {
   // const [lastNameIsValid, setLastNameIsValid] = useState(false);
   // const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
   // const [cpfIsValid, setCpfIsValid] = useState(false);
-  const history = useHistory();
 
   const [basicInfoIsValid, setBasicInfoIsValid] = useState(false);
   const [addressIsValid, setAdressIsValid] = useState(false);
@@ -267,9 +276,9 @@ export default function Register() {
 
           )}
         </S.Form>
-        {/* <S.Register>
-          <Link to="/login">Já tem conta? Faça login!</Link>
-        </S.Register> */}
+        <S.Register>
+          <Link to="/login">Já está cadastrado? Faça login!</Link>
+        </S.Register>
       </S.Content>
     </S.Center>
 

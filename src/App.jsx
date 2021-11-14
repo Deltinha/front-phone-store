@@ -1,7 +1,8 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
+import useLocalStorage from './hooks/useLocalStorage';
 
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
@@ -9,17 +10,11 @@ import Routes from './Routes';
 import { getProducts } from './services/phone-store-api';
 
 export default function App() {
-  const [userInfo, setUserInfo] = useState('');
-  const [cartContent, updateCartContent] = useState('');
+  const [user, setUser] = useLocalStorage('@phone-store-user', {});
+  const [cart, setCart] = useLocalStorage('@phone-store-cart', []);
+
   const [products, setProducts] = useState([]);
   const [areProductsLoading, setAreProductsLoading] = useState(true);
-
-  const userInfoFromLocalStorage = JSON.parse(localStorage.getItem('userInfo'));
-  const cartInfoFromLocalStorage = JSON.parse(localStorage.getItem('cartInfo'));
-
-  // function updateCartContent() {
-
-  // }
 
   function loadProducts() {
     getProducts()
@@ -30,17 +25,11 @@ export default function App() {
       .catch(() => setAreProductsLoading(false));
   }
 
-  useEffect(() => {
-    if (userInfoFromLocalStorage) setUserInfo(userInfoFromLocalStorage);
-    if (cartInfoFromLocalStorage) updateCartContent(cartInfoFromLocalStorage);
-    if (userInfo.token) updateCartContent();
-  }, [userInfo.token]);
-
   return (
     <UserContext.Provider
       value={{
-        userInfo,
-        setUserInfo,
+        user,
+        setUser,
         products,
         setProducts,
         areProductsLoading,
@@ -48,7 +37,11 @@ export default function App() {
         loadProducts,
       }}
     >
-      <CartContext.Provider value={{ cartContent, updateCartContent }}>
+      <CartContext.Provider value={{
+        cart,
+        setCart,
+      }}
+      >
         <Router>
           <GlobalStyle />
           <Theme />

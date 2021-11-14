@@ -12,12 +12,14 @@ import Login from './pages/Login';
 export default function Routes() {
   return (
     <Switch>
-      <Header />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/" component={HomePage} />
-      <Route exact path="/product/:productId" component={Product} />
-      <Route exact path="/checkout" />
+      <>
+        <Header />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/product/:productId" component={Product} />
+        <Route exact path="/checkout" />
+      </>
     </Switch>
   );
 }
