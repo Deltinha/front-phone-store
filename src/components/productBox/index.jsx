@@ -8,9 +8,10 @@ export default function ProductBox({ product }) {
   const [colorName, setColorName] = useState('');
 
   const {
-    model, capacity, value, description, color, brand, productImages,
+    model, capacity, description, color, brand, productImages,
   } = product;
 
+  const value = product.value / 100;
   const firstImage = productImages.find((img) => img.perspective === 'front');
 
   useEffect(() => {
@@ -24,10 +25,10 @@ export default function ProductBox({ product }) {
     <S.ProductDetail>
       <S.ProductImage src={firstImage.url} />
       <div>
-        {(value) && <h3>{`R$ ${(value / 100).toFixed(2)}`}</h3>}
+        {(value) && <h3>{`R$ ${value.toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}</h3>}
         <S.ProductInfo>
           {(brand) && <h4>{brand}</h4>}
-          {(model) ? <S.Title>{`${model} ${capacity || ''} ${colorName || ''}`}</S.Title> : ''}
+          {(model) && <S.Title>{`${model} ${capacity || ''} ${colorName || ''}`}</S.Title> }
           <h4>{description}</h4>
         </S.ProductInfo>
         <AddToCardButton />
