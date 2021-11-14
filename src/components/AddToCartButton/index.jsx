@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
-import { RiShoppingCart2Fill } from 'react-icons/ri';
+import { FaCartPlus } from 'react-icons/fa';
 import CartContext from '../../contexts/cartContext';
 import * as S from './style';
 
@@ -16,7 +16,7 @@ export default function AddToCartButton({ product }) {
     }}
     >
       <S.CartIconWrapper>
-        <RiShoppingCart2Fill />
+        <FaCartPlus />
       </S.CartIconWrapper>
       <span>Adicionar ao carrinho</span>
     </S.AddToCartButton>
