@@ -1,18 +1,26 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import Swal from 'sweetalert2';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { login } from '../../services/user.api';
 import * as S from './style';
+import UserContext from '../../contexts/userContext';
 
 export default function Login() {
+  const { user, setUser } = useContext(UserContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const [emailIsValid, setEmailIsValid] = useState(false);
 
   const history = useHistory();
+
+  if (user && user.token) {
+    history.push('/');
+    Swal.fire('Você já está conectado, para entrar com uma conta diferente, faça logout.');
+  }
 
   useEffect(() => {
     setEmailIsValid(
@@ -29,9 +37,9 @@ export default function Login() {
     };
 
     if (emailIsValid) {
-      login(body).then(() => {
-        // history.push('/cart');
-        history.push('/'); // provisorio
+      login(body).then((res) => {
+        setUser(res.data);
+        history.push('/');
       }).catch(() => {
         Swal.fire('Algo deu errado, por favor recarregue');
       });
@@ -68,9 +76,9 @@ export default function Login() {
             <button type="submit" onClick={submitForm}>Entrar</button>
           </S.DivRegister>
         </S.Form>
-        {/* <S.Register>
-          <Link to="/register">Ainda não tem uma conta? Registre-se!</Link>
-        </S.Register> */}
+        <S.Register>
+          <Link to="/register">Ainda não tem uma conta? Cadastre-se!</Link>
+        </S.Register>
       </S.Content>
     </S.Center>
   );

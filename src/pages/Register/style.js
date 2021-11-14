@@ -28,6 +28,11 @@ export const Register = styled.div`
   text-align: center;
   align-items: center;
   margin-top: 1rem;
+  a {
+    margin-top: 0;
+    color: var(--detail);
+    font-size: 14px;
+  }
 `;
 
 export const Form = styled.form`
