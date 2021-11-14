@@ -11,12 +11,12 @@ import * as S from './style';
 export default function Header() {
   const history = useHistory();
   const { loadProducts } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   function returnToHome() {
     history.push('/');
     loadProducts();
   }
-
   return (
     <S.TopBar>
       <S.LeftButtonsWrapper onClick={() => returnToHome()}>
@@ -28,12 +28,22 @@ export default function Header() {
         </span>
       </S.LeftButtonsWrapper>
       <S.RightButtonsWrapper>
-        <S.RegisterButtonWrapper onClick={() => history.push('/register')}>
-          <RiUserAddFill />
-        </S.RegisterButtonWrapper>
-        <S.LogButtonWrapper onClick={() => history.push('/login')}>
-          <RiLoginBoxFill />
-        </S.LogButtonWrapper>
+        {(user && user.token)
+          ? (
+            <S.LogButtonWrapper onClick={() => setUser('')}>
+              <RiLogoutBoxFill />
+            </S.LogButtonWrapper>
+          )
+          : (
+            <>
+              <S.RegisterButtonWrapper onClick={() => history.push('/register')}>
+                <RiUserAddFill />
+              </S.RegisterButtonWrapper>
+              <S.LogButtonWrapper onClick={() => history.push('/login')}>
+                <RiLoginBoxFill />
+              </S.LogButtonWrapper>
+            </>
+          )}
         <S.CartButtonWrapper>
           <FaShoppingCart />
         </S.CartButtonWrapper>

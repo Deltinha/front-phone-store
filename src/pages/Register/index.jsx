@@ -14,7 +14,6 @@ export default function Register() {
 
   if (user && user.token) {
     history.push('/');
-    Swal.fire('Você já está conectado, para entrar com uma conta diferente, faça logout.');
   }
 
   const [isStep1, setIsStep1] = useState(true);
