@@ -111,7 +111,7 @@ export default function Register() {
       neighborhood,
       street,
       addressNumber,
-      complement,
+      ...(complement && { complement }),
       cpf,
       phoneNumber,
     };
