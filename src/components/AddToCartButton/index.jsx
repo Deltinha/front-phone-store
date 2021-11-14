@@ -1,8 +1,7 @@
-/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
-import { RiShoppingCart2Fill } from 'react-icons/ri';
-import * as S from './style';
+import { FaCartPlus } from 'react-icons/fa';
 import CartContext from '../../contexts/cartContext';
+import * as S from './style';
 
 export default function AddToCartButton({ product }) {
   const { addToCart } = useContext(CartContext);
@@ -10,7 +9,7 @@ export default function AddToCartButton({ product }) {
   return (
     <S.AddToCartButton onClick={addToCart(product)}>
       <S.CartIconWrapper>
-        <RiShoppingCart2Fill />
+        <FaCartPlus />
       </S.CartIconWrapper>
       <span>Adicionar ao carrinho</span>
     </S.AddToCartButton>

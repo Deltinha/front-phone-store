@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from 'react';
 import {
-  RiShoppingCart2Fill, RiUserAddFill, RiLoginBoxFill, RiHomeFill, RiLogoutBoxFill,
+  RiUserAddFill, RiLoginBoxFill, RiHomeFill, RiLogoutBoxFill,
 } from 'react-icons/ri';
+import { FaShoppingCart } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import UserContext from '../../contexts/userContext';
 import * as S from './style';
@@ -34,7 +35,7 @@ export default function Header() {
           <RiLoginBoxFill />
         </S.LogButtonWrapper>
         <S.CartButtonWrapper>
-          <RiShoppingCart2Fill />
+          <FaShoppingCart />
         </S.CartButtonWrapper>
       </S.RightButtonsWrapper>
     </S.TopBar>
