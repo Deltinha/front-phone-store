@@ -1,14 +1,13 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 import getColorName from '../../services/color-name-api';
 import AddToCartButton from '../AddToCartButton';
-import CartContext from '../../contexts/cartContext';
 
 export default function ProductBox({ product }) {
   const [colorName, setColorName] = useState('');
   // eslint-disable-next-line no-unused-vars
-  const { cart, setCart } = useContext(CartContext);
 
   const {
     model, capacity, value, description, color, brand, productImages,
@@ -27,12 +26,6 @@ export default function ProductBox({ product }) {
     <S.ProductDetail>
       <S.ProductImage
         src={firstImage.url}
-        onClick={() => {
-          alert('clicou');
-          const data = cart;
-          data.push(product);
-          setCart(data);
-        }}
       />
       <div>
         {(value) && <h3>{`R$ ${(value / 100).toFixed(2)}`}</h3>}
@@ -41,7 +34,7 @@ export default function ProductBox({ product }) {
           {(model) ? <S.Title>{`${model} ${capacity || ''} ${colorName || ''}`}</S.Title> : ''}
           <h4>{description}</h4>
         </S.ProductInfo>
-        <AddToCartButton />
+        <AddToCartButton product={product} />
       </div>
     </S.ProductDetail>
   );
