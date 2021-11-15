@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const ProductImage = styled.div`
     width: 150px;
     height: 150px;
@@ -22,20 +21,19 @@ export const ProductBox = styled.div`
     gap: 20px;
 `;
 export const ProductDescription = styled.div`
-    width: calc(100% - 350px);
+    width: calc(100% - 380px);
     h3{
-        font-size: 28px;
+        font-size: 24px;
         font-weight: 700;
         color: var(--primary);
         margin-bottom: 8px;
     }
     p{
-        font-size: 18px;
-        
+        font-size: 18px;        
     }
 `;
 export const PoductPrice = styled.div`
-    width: 100px;
+    width: 130px;
     p {
         font-size: 20px;
     }
@@ -55,8 +53,7 @@ export const Quantity = styled.div`
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    color: var(--primary);
-    
+    color: var(--primary);    
     div {
         width: 30px;
         height: 25px;

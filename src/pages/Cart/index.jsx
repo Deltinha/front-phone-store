@@ -28,6 +28,7 @@ export default function Cart() {
         <S.ConfirmPurchase>
           Confirmar compra
         </S.ConfirmPurchase>
+        <S.CleanCart>Limpar Carrinho</S.CleanCart>
       </S.Cart>
     </S.Page>
   );

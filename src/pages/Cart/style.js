@@ -38,16 +38,46 @@ export const CartTitle = styled.h2`
 
 
 export const ConfirmPurchase = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
-border-radius: 2px;
-color: white;
-height: 34px;
-width: 220px;
-background-color: var(--primary);
-position: absolute;
-right: 25px;
-bottom: 25px;
-font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    color: white;
+    height: 34px;
+    width: 220px;
+    background-color: var(--detail);
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    font-size: 18px;
+    &:hover {
+    transition: all 0.3s;
+    background-color: var(--primary);
+    font-weight: 500;
+
+    cursor: pointer;
+  }
+`;
+
+export const CleanCart = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    color: var(--detail);
+    height: 34px;
+    width: 220px;
+    background-color: white;
+    border: 1px solid var(--detail);
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    font-size: 18px;
+    &:hover {
+    transition: all 0.3s;
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+    font-weight: 500;
+    cursor: pointer;
+  }
 `;
