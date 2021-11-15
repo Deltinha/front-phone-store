@@ -1,14 +1,25 @@
+/* eslint-disable no-unused-vars */
 import { FaTrash } from 'react-icons/fa';
 
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
-import React from 'react';
+import React, { useContext } from 'react';
 import * as S from './style';
+import CartContext from '../../contexts/cartContext';
 
 export default function CartProduct({ product }) {
   const {
     model, capacity, value, description, color, brand, productImages,
   } = product;
   const firstImage = productImages.find((img) => img.perspective === 'front');
+  const { cart, setCart } = useContext(CartContext);
+
+  function removeItem() {
+    setCart(
+      cart.filter((item) => (
+        item.id !== product.id
+      )),
+    );
+  }
 
   return (
     <S.ProductBox>
@@ -48,7 +59,7 @@ export default function CartProduct({ product }) {
         <div>
           <AiOutlineMinusCircle />
         </div>
-        <S.DeleteButton>
+        <S.DeleteButton onClick={() => removeItem()}>
           <FaTrash />
         </S.DeleteButton>
       </S.Quantity>
