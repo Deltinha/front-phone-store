@@ -7,7 +7,7 @@ export default function AddToCartButton({ product }) {
   const { addToCart } = useContext(CartContext);
 
   return (
-    <S.AddToCartButton onClick={addToCart(product)}>
+    <S.AddToCartButton onClick={() => addToCart(product)}>
       <S.CartIconWrapper>
         <FaCartPlus />
       </S.CartIconWrapper>
