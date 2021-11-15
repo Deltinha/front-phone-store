@@ -6,7 +6,9 @@ const BASE_URL = process.env.NODE_ENV === 'development'
 
 function createHeaders(token) {
   const headers = {
-    Authentication: `Bearer ${token}`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   };
   return headers;
 }
@@ -32,6 +34,7 @@ export function getCategories() {
 
 export function postCheckout({ body, token }) {
   const headers = createHeaders(token);
+  console.log(headers);
   const promise = axios.post(`${BASE_URL}/checkout`, body, headers);
   return promise;
 }
