@@ -1,10 +1,66 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RiTruckFill } from 'react-icons/ri';
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import CartContext from '../../contexts/cartContext';
+import useAuthConfig from '../../hooks/useAuth';
+import { postCheckout } from '../../services/phone-store-api';
 import * as S from './style';
 
-export default function CheckoutButton() {
+export default function CheckoutButton({ products }) {
+  const { setCart } = useContext(CartContext);
+  const history = useHistory();
+  const body = [];
+
+  products.forEach((product) => {
+    body.push({
+      productId: product.id,
+      qty: product.quantity,
+    });
+  });
+
+  const headers = useAuthConfig();
+
+  function successAlert() {
+    Swal.fire(
+      'Tudo certo!',
+      'Compra finalizada!',
+      'success',
+    ).then(() => setCart([]));
+  }
+
+  async function processError(status) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'alert-btn alert-btn-success',
+      },
+      buttonsStyling: false,
+    });
+
+    if (status === 401) {
+      return swalWithBootstrapButtons.fire({
+        title: 'Oops...',
+        text: 'Você não está logado!',
+        icon: 'error',
+        confirmButtonText: 'Conectar-me!',
+      }).then(() => history.push('/login'));
+    }
+
+    return Swal.fire(
+      'Oops...',
+      'Algo deu errado!',
+      'error',
+    );
+  }
+
+  function checkout() {
+    postCheckout({ body, headers })
+      .then(() => successAlert())
+      .catch((error) => processError(error.response.status));
+  }
+
   return (
-    <S.CheckoutButton>
+    <S.CheckoutButton onClick={() => checkout({ body, headers })}>
       <S.CheckoutIconWrapper>
         <RiTruckFill />
       </S.CheckoutIconWrapper>

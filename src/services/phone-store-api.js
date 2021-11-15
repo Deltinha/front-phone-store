@@ -4,7 +4,7 @@ const BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:4000'
   : 'https://phone-store-driven.herokuapp.com';
 
-function getProducts() {
+export function getProducts() {
   const promise = axios.get(`${BASE_URL}/products`);
   return promise;
 }
@@ -15,12 +15,15 @@ export function getProductsByCategorie({ categorie, value }) {
   return promise;
 }
 
-function getProductById(id) {
+export function getProductById(id) {
   return axios.get(`${BASE_URL}/products/${id}`);
 }
 
-function getCategories() {
+export function getCategories() {
   return axios.get(`${BASE_URL}/categories`);
 }
 
-export { getProducts, getProductById, getCategories };
+export function postCheckout({ body, headers }) {
+  const promise = axios.post(`${BASE_URL}/checkout`, body, headers);
+  return promise;
+}

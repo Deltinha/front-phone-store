@@ -47,19 +47,19 @@ export default function App() {
         setAreProductsLoading,
         loadProducts,
       }}
-    >
-      <CartContext.Provider value={{
-        cart,
-        setCart,
-        addToCart,
-      }}
       >
-        <Router>
-          <GlobalStyle />
-          <Theme />
-          <Routes />
-        </Router>
-      </CartContext.Provider>
+        <CartContext.Provider value={{
+          cart,
+          setCart,
+          addToCart,
+        }}
+        >
+          <Router>
+            <GlobalStyle />
+            <Theme />
+            <Routes />
+          </Router>
+        </CartContext.Provider>
       </ProductsContext.Provider>
     </UserContext.Provider>
   );

@@ -12,6 +12,19 @@ const Theme = createGlobalStyle`
     body {
         font-family: 'Open Sans';
     }
+
+    .alert-btn {
+        border-radius: 2px;
+        height: 34px;
+        width: 220px;
+        font-size: 18px;
+    }
+    .alert-btn-success {
+        background-color: var(--detail);
+        :hover {
+            background-color: var(--primary);
+        }
+    }
 `;
 
 export default Theme;
