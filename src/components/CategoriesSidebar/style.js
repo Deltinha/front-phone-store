@@ -13,7 +13,7 @@ const Sidebar = styled.div`
   border-radius: 4px;
   background-color: white;
 
-  div {
+  > div {
     display: flex;
     flex-direction: column;
     gap: 5px;
