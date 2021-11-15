@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiTruckFill } from 'react-icons/ri';
 import Swal from 'sweetalert2';
+import useAuthConfig from '../../hooks/useAuth';
 import { postCheckout } from '../../services/phone-store-api';
 import * as S from './style';
 
@@ -20,27 +21,26 @@ function outcomeAlert(success) {
   }
 }
 
-function checkout({ body, token }) {
-  postCheckout({ body, token })
+function checkout({ body, headers }) {
+  postCheckout({ body, headers })
     .then(() => outcomeAlert(true))
     .catch(() => outcomeAlert(false));
 }
 
-export default function CheckoutButton() {
-  const body = [
-    {
-      productId: 3,
-      qty: 99,
-    },
-    {
-      productId: 2,
-      qty: 99,
-    },
-  ];
-  const token = 'd1a4d46c-4c18-4fce-a121-cef250e40481';
+export default function CheckoutButton({ products }) {
+  const body = [];
+
+  products.forEach((product) => {
+    body.push({
+      productId: product.id,
+      qty: product.quantity,
+    });
+  });
+
+  const headers = useAuthConfig();
 
   return (
-    <S.CheckoutButton onClick={() => checkout({ body, token })}>
+    <S.CheckoutButton onClick={() => checkout({ body, headers })}>
       <S.CheckoutIconWrapper>
         <RiTruckFill />
       </S.CheckoutIconWrapper>

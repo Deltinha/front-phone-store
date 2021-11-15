@@ -3,6 +3,7 @@ import * as S from './style';
 
 import CartContext from '../../contexts/cartContext';
 import CartProduct from '../../components/CartProduct/index.js';
+import CheckoutButton from '../../components/CheckoutButton';
 
 export default function Cart() {
   const { cart } = useContext(CartContext);
@@ -22,9 +23,7 @@ export default function Cart() {
       <S.Cart>
         <S.CartTitle>Carrinho de compras</S.CartTitle>
         {Object.values(organizedProductList).map((product) => <CartProduct product={product} />)}
-        <S.ConfirmPurchase>
-          Confirmar compra
-        </S.ConfirmPurchase>
+        <CheckoutButton products={Object.values(organizedProductList)} />
         <S.CleanCart>Limpar Carrinho</S.CleanCart>
       </S.Cart>
     </S.Page>
