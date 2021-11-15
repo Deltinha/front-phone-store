@@ -3,15 +3,14 @@ import React, { useContext } from 'react';
 import {
   RiUserAddFill, RiLoginBoxFill, RiHomeFill, RiLogoutBoxFill,
 } from 'react-icons/ri';
-import { FaShoppingCart } from 'react-icons/fa';
+import { BsCartFill } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
-import UserContext from '../../contexts/userContext';
+import ProductsContext from '../../contexts/productsContext';
 import * as S from './style';
 
 export default function Header() {
   const history = useHistory();
-  const { loadProducts } = useContext(UserContext);
-  const { user, setUser } = useContext(UserContext);
+  const { loadProducts } = useContext(ProductsContext);
 
   function returnToHome() {
     history.push('/');
@@ -45,7 +44,7 @@ export default function Header() {
             </>
           )}
         <S.CartButtonWrapper>
-          <FaShoppingCart />
+          <BsCartFill />
         </S.CartButtonWrapper>
       </S.RightButtonsWrapper>
     </S.TopBar>

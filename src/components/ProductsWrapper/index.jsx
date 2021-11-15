@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import UserContext from '../../contexts/userContext';
+import ProductsContext from '../../contexts/productsContext';
 import ProductCard from '../ProductCard';
 import * as S from './style';
 
 export default function ProductsWrapper() {
-  const { areProductsLoading, products, loadProducts } = useContext(UserContext);
+  const { areProductsLoading, products, loadProducts } = useContext(ProductsContext);
   useEffect(() => {
     loadProducts();
   }, []);

@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { BsCartPlusFill, BsSearch } from 'react-icons/bs';
 import getColorName from '../../services/color-name-api';
 import * as S from './style';
 
@@ -10,6 +13,7 @@ export default function ProductCard({ product }) {
   } = product;
   const value = product.value / 100;
   const [colorName, setColorName] = useState('');
+  const [blackOverlayVisible, setBlackOverlayVisible] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -21,7 +25,10 @@ export default function ProductCard({ product }) {
   }, []);
 
   return (
-    <S.ProductCard onClick={() => history.push(`/product/${id}`)}>
+    <S.ProductCard
+      onMouseEnter={() => setBlackOverlayVisible(true)}
+      onMouseLeave={() => setBlackOverlayVisible(false)}
+    >
       <img src={url} alt="" />
       <div>
         <S.ProductBrand>{brand}</S.ProductBrand>
@@ -35,6 +42,14 @@ export default function ProductCard({ product }) {
             {value.toLocaleString('pt-br', { minimumFractionDigits: 2 })}
           </S.PriceValue>
         </S.Price>
+        <S.BlackOverlay visibility={blackOverlayVisible}>
+          <S.OverlayIconWrapper onClick={() => history.push(`/product/${id}`)}>
+            <BsSearch />
+          </S.OverlayIconWrapper>
+          <S.OverlayIconWrapper onClick={() => (false)}>
+            <BsCartPlusFill />
+          </S.OverlayIconWrapper>
+        </S.BlackOverlay>
       </div>
     </S.ProductCard>
   );
