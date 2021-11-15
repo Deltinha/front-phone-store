@@ -45,7 +45,7 @@ export default function Header() {
               </S.LogButtonWrapper>
             </>
           )}
-        <S.CartButtonWrapper>
+        <S.CartButtonWrapper onClick={() => history.push('/register')}>
           <BsCartFill />
         </S.CartButtonWrapper>
       </S.RightButtonsWrapper>
