@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
 import { FaTrash } from 'react-icons/fa';
 
@@ -19,6 +21,10 @@ export default function CartProduct({ product }) {
         item.id !== product.id
       )),
     );
+  }
+
+  function increaseQty() {
+    setCart([...cart, product]);
   }
 
   return (
@@ -50,7 +56,7 @@ export default function CartProduct({ product }) {
         </p>
       </S.PoductPrice>
       <S.Quantity>
-        <div>
+        <div onClick={() => increaseQty()}>
           <AiOutlinePlusCircle />
         </div>
         <div>
