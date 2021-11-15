@@ -36,7 +36,8 @@ export default function Cart() {
         {Object.values(productList).map((product) => (
           <CartProduct product={product} />
         ))}
-        <CheckoutButton products={Object.values(productList)} />
+        {(Object.keys(productList).length > 0)
+          && <CheckoutButton products={Object.values(productList)} />}
         <S.CleanCart onClick={() => setCart([])}>Limpar Carrinho</S.CleanCart>
       </S.Cart>
     </S.Page>
