@@ -1,20 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RiTruckFill } from 'react-icons/ri';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import CartContext from '../../contexts/cartContext';
 import useAuthConfig from '../../hooks/useAuth';
 import { postCheckout } from '../../services/phone-store-api';
 import * as S from './style';
 
-function successAlert() {
-  Swal.fire(
-    'Tudo certo!',
-    'Compra finalizada!',
-    'success',
-  );
-}
-
 export default function CheckoutButton({ products }) {
+  const { setCart } = useContext(CartContext);
   const history = useHistory();
   const body = [];
 
@@ -26,6 +20,14 @@ export default function CheckoutButton({ products }) {
   });
 
   const headers = useAuthConfig();
+
+  function successAlert() {
+    Swal.fire(
+      'Tudo certo!',
+      'Compra finalizada!',
+      'success',
+    ).then(() => setCart([]));
+  }
 
   async function processError(status) {
     const swalWithBootstrapButtons = Swal.mixin({
