@@ -1,6 +1,8 @@
 import { BrowserRouter as Router } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import UserContext from './contexts/userContext';
+import CartContext from './contexts/cartContext';
+import useLocalStorage from './hooks/useLocalStorage';
 import ProductsContext from './contexts/productsContext';
 
 import GlobalStyle from './styles/GlobalStyle';
@@ -9,10 +11,17 @@ import Routes from './Routes';
 import { getProducts } from './services/phone-store-api';
 
 export default function App() {
-  const [userInfo, setUserInfo] = useState('');
-  const infoFromLocalStorage = JSON.parse(localStorage.getItem('userInfo'));
+  const [user, setUser] = useLocalStorage('@phone-store-user', {});
+  const [cart, setCart] = useLocalStorage('@phone-store-cart', []);
+
   const [products, setProducts] = useState([]);
   const [areProductsLoading, setAreProductsLoading] = useState(true);
+
+  function addToCart(product) {
+    const data = cart;
+    data.push(product);
+    setCart(data);
+  }
 
   function loadProducts() {
     getProducts()
@@ -23,15 +32,12 @@ export default function App() {
       .catch(() => setAreProductsLoading(false));
   }
 
-  useEffect(() => {
-    if (infoFromLocalStorage) setUserInfo(infoFromLocalStorage);
-  }, [userInfo.token]);
-
   return (
     <UserContext.Provider
       value={{
-        userInfo,
-        setUserInfo,
+        user,
+        setUser,
+
       }}
     >
       <ProductsContext.Provider value={{
@@ -41,12 +47,19 @@ export default function App() {
         setAreProductsLoading,
         loadProducts,
       }}
+    >
+      <CartContext.Provider value={{
+        cart,
+        setCart,
+        addToCart,
+      }}
       >
         <Router>
           <GlobalStyle />
           <Theme />
           <Routes />
         </Router>
+      </CartContext.Provider>
       </ProductsContext.Provider>
     </UserContext.Provider>
   );
