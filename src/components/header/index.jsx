@@ -6,10 +6,12 @@ import {
 import { BsCartFill } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
 import ProductsContext from '../../contexts/productsContext';
+import UserContext from '../../contexts/userContext';
 import * as S from './style';
 
 export default function Header() {
   const history = useHistory();
+  const { user, setUser } = useContext(UserContext);
   const { loadProducts } = useContext(ProductsContext);
 
   function returnToHome() {
