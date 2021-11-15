@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
           <S.OverlayIconWrapper onClick={() => history.push(`/product/${id}`)}>
             <BsSearch />
           </S.OverlayIconWrapper>
-          <S.OverlayIconWrapper onClick={() => history.push('/')}>
+          <S.OverlayIconWrapper onClick={() => (false)}>
             <BsCartPlusFill />
           </S.OverlayIconWrapper>
         </S.BlackOverlay>

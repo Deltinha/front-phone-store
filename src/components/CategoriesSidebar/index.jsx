@@ -5,7 +5,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
-import UserContext from '../../contexts/userContext';
+import ProductsContext from '../../contexts/productsContext';
 import { getCategories, getProductsByCategorie } from '../../services/phone-store-api';
 import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
@@ -25,7 +25,7 @@ function categoriesOrganizer(categories) {
 }
 
 export default function CategoriesSideBar() {
-  const { setAreProductsLoading, setProducts } = useContext(UserContext);
+  const { setAreProductsLoading, setProducts } = useContext(ProductsContext);
   const [categories, setCategories] = useState([]);
 
   function updateProducts(categorie, value) {

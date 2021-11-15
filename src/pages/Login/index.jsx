@@ -19,7 +19,6 @@ export default function Login() {
 
   if (user && user.token) {
     history.push('/');
-    Swal.fire('Você já está conectado, para entrar com uma conta diferente, faça logout.');
   }
 
   useEffect(() => {

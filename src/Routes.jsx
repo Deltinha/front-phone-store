@@ -8,6 +8,7 @@ import Header from './components/header';
 import Register from './pages/Register';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
+import Cart from './pages/Cart';
 
 export default function Routes() {
   return (
@@ -19,6 +20,8 @@ export default function Routes() {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/product/:productId" component={Product} />
         <Route exact path="/checkout" />
+        <Route exact path="/cart" component={Cart} />
+
       </>
     </Switch>
   );

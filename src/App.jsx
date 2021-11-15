@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
 import useLocalStorage from './hooks/useLocalStorage';
+import ProductsContext from './contexts/productsContext';
 
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
@@ -36,25 +37,30 @@ export default function App() {
       value={{
         user,
         setUser,
+
+      }}
+    >
+      <ProductsContext.Provider value={{
         products,
         setProducts,
         areProductsLoading,
         setAreProductsLoading,
         loadProducts,
       }}
-    >
-      <CartContext.Provider value={{
-        cart,
-        setCart,
-        addToCart,
-      }}
       >
-        <Router>
-          <GlobalStyle />
-          <Theme />
-          <Routes />
-        </Router>
-      </CartContext.Provider>
+        <CartContext.Provider value={{
+          cart,
+          setCart,
+          addToCart,
+        }}
+        >
+          <Router>
+            <GlobalStyle />
+            <Theme />
+            <Routes />
+          </Router>
+        </CartContext.Provider>
+      </ProductsContext.Provider>
     </UserContext.Provider>
   );
 }
