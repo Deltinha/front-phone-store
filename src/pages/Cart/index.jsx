@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import * as S from './style';
 
 import CartContext from '../../contexts/cartContext';
-import CartProduct from '../../components/CartProduct/index.js';
+import CartProduct from '../../components/CartProduct/index';
 import CheckoutButton from '../../components/CheckoutButton';
 
 export default function Cart() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const organizedProductList = {};
 
@@ -24,7 +24,7 @@ export default function Cart() {
         <S.CartTitle>Carrinho de compras</S.CartTitle>
         {Object.values(organizedProductList).map((product) => <CartProduct product={product} />)}
         <CheckoutButton products={Object.values(organizedProductList)} />
-        <S.CleanCart>Limpar Carrinho</S.CleanCart>
+        <S.CleanCart onClick={() => setCart([])}>Limpar Carrinho</S.CleanCart>
       </S.Cart>
     </S.Page>
   );
