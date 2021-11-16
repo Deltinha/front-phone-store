@@ -2,16 +2,13 @@ import styled from 'styled-components';
 
 export const ProductDetail = styled.div`
     display: inline-flex;
-    position: relative;
+    justify-content: center;
+    align-items: center;
     > div {
+        margin-left: -6rem;
         box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.1);
-        position: absolute;
         width: 500px;
         height: 300px;
-        right: 0;
-        top: 50%;
-        left: 80%;
-        transform: translate(0, -50%);
         display: flex;
         flex-direction: column;
         align-items: center;
