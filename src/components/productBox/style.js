@@ -11,7 +11,8 @@ export const InfoBox = styled.div`
     box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.1);
     border: solid 1px var(--tertiary);
     width: 500px;
-    height: 300px;
+    min-height: 300px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;

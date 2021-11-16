@@ -50,7 +50,7 @@ export default function CheckoutButton({ products }) {
   function checkout() {
     postCheckout({ body, headers })
       .then(() => successAlert())
-      .catch((error) => processError(error.response.status));
+      .catch((error) => processError(error.response?.status));
   }
 
   return (
