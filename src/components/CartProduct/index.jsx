@@ -60,7 +60,7 @@ export default function CartProduct({ product }) {
           {`${model} ${capacity} ${colorName}`}
         </h3>
         <p>
-          {`${brand} - ${description}`}
+          {`${brand}`}
         </p>
       </S.ProductDescription>
       <S.PoductPrice>
