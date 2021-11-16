@@ -64,6 +64,7 @@ export const RightButtonsWrapper = styled.div`
 
 export const CartButtonWrapper = styled.div`
     background-color: var(--primary);
+    position: relative;
 `;
 
 export const LogButtonWrapper = styled.div`
@@ -72,4 +73,19 @@ export const LogButtonWrapper = styled.div`
 
 export const RegisterButtonWrapper = styled.div`
     background-color: #ff9ab4;
+`;
+
+export const CartItemCount = styled.div`
+    position: absolute;
+    right: 25%;
+    top: 25%;
+    width: 18px;
+    height: 18px;
+    background-color: #fffce3;
+    border-radius: 50%;    
+    span {
+        color: black;
+        font-weight: 700;
+        font-size: 12px;
+    }
 `;

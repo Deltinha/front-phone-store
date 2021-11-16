@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   RiUserAddFill, RiLoginBoxFill, RiHomeFill, RiLogoutBoxFill,
 } from 'react-icons/ri';
@@ -8,11 +8,13 @@ import { useHistory } from 'react-router-dom';
 import ProductsContext from '../../contexts/productsContext';
 import UserContext from '../../contexts/userContext';
 import * as S from './style';
+import CartContext from '../../contexts/cartContext';
 
 export default function Header() {
   const history = useHistory();
   const { user, setUser } = useContext(UserContext);
   const { loadProducts } = useContext(ProductsContext);
+  const { cart } = useContext(CartContext);
 
   function returnToHome() {
     history.push('/');
@@ -47,6 +49,12 @@ export default function Header() {
           )}
         <S.CartButtonWrapper onClick={() => history.push('/cart')}>
           <BsCartFill />
+          {cart.length > 0
+            && (
+              <S.CartItemCount>
+                <span>{cart.length}</span>
+              </S.CartItemCount>
+            )}
         </S.CartButtonWrapper>
       </S.RightButtonsWrapper>
     </S.TopBar>

@@ -5,7 +5,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { BsCartPlusFill, BsSearch } from 'react-icons/bs';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import getColorName from '../../services/color-name-api';
 import * as S from './style';
 import CartContext from '../../contexts/cartContext';
