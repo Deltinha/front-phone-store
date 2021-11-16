@@ -11,7 +11,8 @@ export const InfoBox = styled.div`
     box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.1);
     border: solid 1px var(--tertiary);
     width: 500px;
-    height: 300px;
+    min-height: 300px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,6 +26,7 @@ export const InfoBox = styled.div`
         }
         
     background-color: var(--secondary);
+    padding: 40px;
 `;
 
 export const ProductInfo = styled.div`
@@ -38,6 +40,10 @@ export const ProductInfo = styled.div`
         font-size: 1rem;
         width: 300px;
         text-align: center;
+        font-style: italic;
+    }
+    p {
+        font-size: 1.2rem;
     }
 `;
 

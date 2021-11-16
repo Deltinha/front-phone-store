@@ -25,9 +25,12 @@ export default function CheckoutButton({ products }) {
   function successAlert() {
     Alert.fire(
       'Tudo certo!',
-      'Compra finalizada!',
+      'Compra finalizada! Os detalhes do pedido foram enviados por e-mail :)',
       'success',
-    ).then(() => setCart([]));
+    ).then(() => {
+      setCart([]);
+      history.push('/');
+    });
   }
 
   async function processError(status) {
@@ -50,7 +53,7 @@ export default function CheckoutButton({ products }) {
   function checkout() {
     postCheckout({ body, headers })
       .then(() => successAlert())
-      .catch((error) => processError(error.response.status));
+      .catch((error) => processError(error.response?.status));
   }
 
   return (
