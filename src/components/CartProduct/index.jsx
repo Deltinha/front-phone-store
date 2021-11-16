@@ -27,11 +27,9 @@ export default function CartProduct({ product }) {
     const index = cart.findIndex((item) => (
       item.id === product.id
     ));
-    const aux = [...cart];
-    // aux.splice(index, 1);
-    console.log(cart);
-
-    // setCart(aux);
+    const aux = cart;
+    aux.splice(index, 1);
+    setCart([...aux]);
   }
 
   function increaseQty() {
