@@ -6,7 +6,7 @@ const Sidebar = styled.div`
   width: 18rem;
   display: inline-flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px var(--secondary);
   box-sizing: border-box;
@@ -23,17 +23,24 @@ const Sidebar = styled.div`
 `;
 
 const CategoriesTitle = styled.span`
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 18px;
+  padding: 2px;
+  font-weight: 600;
   border-color: var(--primary);
   border-style: solid;
   border-width: 0 0 1px 0;
   color: var(--primary);
+
 `;
 
 const CategorieName = styled.span`
   font-size: 15px;
-  cursor: pointer;
+  color: var(--text);
+  &:hover{
+    cursor: pointer;
+    font-weight: 500;
+    color: black;
+  }
 `;
 
 export { Sidebar, CategoriesTitle, CategorieName };
