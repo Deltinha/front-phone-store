@@ -40,6 +40,7 @@ export const ProductInfo = styled.div`
         font-size: 1rem;
         width: 300px;
         text-align: center;
+        font-style: italic;
     }
 `;
 
