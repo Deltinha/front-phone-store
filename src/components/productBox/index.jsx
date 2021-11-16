@@ -26,7 +26,7 @@ export default function ProductBox({ product }) {
       <S.InfoBox>
         {(value) && <h3>{`R$ ${value.toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}</h3>}
         <S.ProductInfo>
-          {(brand) && <h4>{brand}</h4>}
+          {(brand) && <p>{brand}</p>}
           {(model) && <S.Title>{`${model} ${capacity || ''} ${colorName || ''}`}</S.Title> }
           <h4>{description}</h4>
         </S.ProductInfo>

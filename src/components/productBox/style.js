@@ -42,6 +42,9 @@ export const ProductInfo = styled.div`
         text-align: center;
         font-style: italic;
     }
+    p {
+        font-size: 1.2rem;
+    }
 `;
 
 export const ProductImage = styled.img`
