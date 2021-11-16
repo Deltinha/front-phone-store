@@ -23,8 +23,22 @@ export default function CartProduct({ product }) {
     );
   }
 
+  function decreaseQty() {
+    const index = cart.findIndex((item) => (
+      item.id === product.id
+    ));
+    const aux = [...cart];
+    // aux.splice(index, 1);
+    console.log(cart);
+
+    // setCart(aux);
+  }
+
   function increaseQty() {
-    setCart([...cart, product]);
+    const aux = cart.find((item) => (
+      item.id === product.id
+    ));
+    setCart([...cart, aux]);
   }
 
   return (
@@ -62,7 +76,7 @@ export default function CartProduct({ product }) {
         <div>
           <p>{product.quantity}</p>
         </div>
-        <div>
+        <div onClick={() => decreaseQty()}>
           <AiOutlineMinusCircle />
         </div>
         <S.DeleteButton onClick={() => removeItem()}>
