@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FaTrash } from 'react-icons/fa';
 
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
@@ -13,7 +12,7 @@ export default function CartProduct({ product }) {
   const [colorName, setColorName] = useState('');
 
   const {
-    model, capacity, value, description, color, brand, productImages,
+    model, capacity, value, color, brand, productImages,
   } = product;
 
   useEffect(() => {
@@ -60,7 +59,7 @@ export default function CartProduct({ product }) {
           {`${model} ${capacity} ${colorName}`}
         </h3>
         <p>
-          {`${brand} - ${description}`}
+          {`${brand}`}
         </p>
       </S.ProductDescription>
       <S.PoductPrice>
