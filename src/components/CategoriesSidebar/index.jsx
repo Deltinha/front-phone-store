@@ -11,7 +11,7 @@ import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
 
 function categoriesOrganizer(categories) {
-  const preferredOrder = ['model', 'color'];
+  const preferredOrder = ['Model', 'Color'];
   const sortedCategories = [];
 
   for (let i = 0; i < preferredOrder.length; i += 1) {
@@ -49,7 +49,7 @@ export default function CategoriesSideBar() {
   return (
     <S.Sidebar>
       {categories.map((categorie, index) => {
-        if (categorie.type === 'color') {
+        if (categorie.type === 'Color') {
           return (
             <div key={index}>
               <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
