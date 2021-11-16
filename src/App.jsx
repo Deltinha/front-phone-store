@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
 import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -9,6 +10,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 import Routes from './Routes';
 import { getProducts } from './services/phone-store-api';
+import { ToastStyle } from './styles/ReactToastify';
 
 export default function App() {
   const [user, setUser] = useLocalStorage('@phone-store-user', {});
@@ -57,6 +59,8 @@ export default function App() {
           <Router>
             <GlobalStyle />
             <Theme />
+            <ToastStyle />
+            <ToastContainer />
             <Routes />
           </Router>
         </CartContext.Provider>

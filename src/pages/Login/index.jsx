@@ -1,11 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import Swal from 'sweetalert2';
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { login } from '../../services/user.api';
 import * as S from './style';
 import UserContext from '../../contexts/userContext';
 import imgLogo from '../../assets/logo.svg';
+import { Alert } from '../../utils/alertConfig';
 
 export default function Login() {
   const { user, setUser } = useContext(UserContext);
@@ -40,10 +40,10 @@ export default function Login() {
         setUser(res.data);
         history.push('/');
       }).catch(() => {
-        Swal.fire('Algo deu errado, por favor recarregue');
+        Alert.fire('Algo deu errado, por favor recarregue');
       });
     } else {
-      Swal.fire('E-mail inválido.');
+      Alert.fire('E-mail inválido.');
     }
   };
   return (

@@ -14,16 +14,16 @@ const Theme = createGlobalStyle`
     }
 
     .alert-btn {
-        border-radius: 2px;
-        height: 34px;
-        width: 220px;
         font-size: 18px;
-    }
-    .alert-btn-success {
-        background-color: var(--detail);
-        :hover {
-            background-color: var(--primary);
-        }
+        background-color: var(--detail) !important;
+        color: white;
+
+        &:hover {
+        transition: all 0.3s;
+        background-color: var(--primary) !important;
+        font-weight: 500;
+        cursor: pointer;
+        } 
     }
 `;
 
