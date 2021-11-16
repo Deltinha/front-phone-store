@@ -12,7 +12,7 @@ import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
 
 function categoriesOrganizer(categories) {
-  const preferredOrder = ['Model', 'Color'];
+  const preferredOrder = ['Brand', 'Color', 'Model'];
   const sortedCategories = [];
 
   for (let i = 0; i < preferredOrder.length; i += 1) {
