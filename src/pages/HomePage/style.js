@@ -2,11 +2,11 @@
 import styled from 'styled-components';
 
 const HomePage = styled.div`
-  width: 1170px;
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+  display: inline-flex;
+  justify-content: left;
+  gap: 4rem;
   padding: 8rem;
-  box-sizing: initial !important;
 `;
 
 export { HomePage };

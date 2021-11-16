@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import Swal from 'sweetalert2';
 import React, { useState, useEffect, useContext } from 'react';
@@ -6,6 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { createNewUser } from '../../services/user.api';
 import * as S from './style';
 import UserContext from '../../contexts/userContext';
+import imgLogo from '../../assets/logo.svg';
 
 export default function Register() {
   const history = useHistory();
@@ -127,7 +127,7 @@ export default function Register() {
     if (addressIsValid) {
       createNewUser(body).then(() => {
         history.push('/login');
-      }).catch((error) => {
+      }).catch(() => {
         Swal.fire('Algo deu errado, por favor recarregue');
       });
     } else {
@@ -137,11 +137,10 @@ export default function Register() {
   return (
     <S.Center>
       <S.Content>
-        {/* <S.Logo src={imgLogo} alt="store logo"/> */}
-
-        <S.Register>
+        <S.Logo src={imgLogo} alt="store logo" />
+        <S.PageTitle>
           <h3>Criar conta</h3>
-        </S.Register>
+        </S.PageTitle>
         <S.Form>
           {isStep1 ? (
             <S.DivRegister>
@@ -275,9 +274,9 @@ export default function Register() {
 
           )}
         </S.Form>
-        <S.Register>
+        <S.LinkTo>
           <Link to="/login">Já está cadastrado? Faça login!</Link>
-        </S.Register>
+        </S.LinkTo>
       </S.Content>
     </S.Center>
 

@@ -1,17 +1,28 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FaTrash } from 'react-icons/fa';
 
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import CartContext from '../../contexts/cartContext';
+import getColorName from '../../services/color-name-api';
 
 export default function CartProduct({ product }) {
+  const [colorName, setColorName] = useState('');
+
   const {
-    model, capacity, value, description, color, brand, productImages,
+    model, capacity, value, color, brand, productImages,
   } = product;
+
+  useEffect(() => {
+    getColorName(color)
+      .then((res) => {
+        setColorName(res.data?.colors[0].name);
+      });
+  }, []);
+
   const firstImage = productImages.find((img) => img.perspective === 'front');
   const { cart, setCart } = useContext(CartContext);
 
@@ -45,19 +56,13 @@ export default function CartProduct({ product }) {
         <img src={firstImage.url} alt="imagem do produto" />
       </S.ProductImage>
       <S.ProductDescription>
-        <h3>
-          {model}
-          {' '}
-          {capacity}
-          {' '}
-          {color}
-        </h3>
+        <Link to={`/product/${product.id}`}>
+          <h3>
+            {`${model} ${capacity} ${colorName}`}
+          </h3>
+        </Link>
         <p>
-          {brand}
-          {' '}
-          -
-          {' '}
-          {description}
+          {`${brand}`}
         </p>
       </S.ProductDescription>
       <S.PoductPrice>

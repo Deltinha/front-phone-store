@@ -8,7 +8,7 @@ export const TopBar = styled.div`
     height: 4rem;
     top: 0;
     left: 0;
-    background-color: var(--secondary);
+    background: linear-gradient(to right, var(--primary), var(--detail));    
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -30,28 +30,28 @@ export const LeftButtonsWrapper = styled.div`
         justify-content: center;
         height: 4rem;
         width: 4rem;
+        padding-left: 2rem;
     }
 
     > span {
-        background-color: #ff83a2;
+        font-family: 'Major Mono Display';
         height: 4rem;
-        width: 22rem;
+        width: 20rem;
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: 700;
-        font-size: 3rem;
+        font-size: 2rem;
     }
 `;
 
 export const HomeButtonWrapper = styled.div`
-    background-color: var(--primary);
 `;
 
 export const RightButtonsWrapper = styled.div`
     display: flex;
     align-items: center;
-
+    margin-right: 2rem;
     > div {
         display: flex;
         align-items: center;
@@ -63,13 +63,10 @@ export const RightButtonsWrapper = styled.div`
 `;
 
 export const CartButtonWrapper = styled.div`
-    background-color: var(--primary);
 `;
 
 export const LogButtonWrapper = styled.div`
-    background-color: #ff6b8f;
 `;
 
 export const RegisterButtonWrapper = styled.div`
-    background-color: #ff9ab4;
 `;

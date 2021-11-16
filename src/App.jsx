@@ -18,7 +18,7 @@ export default function App() {
   const [areProductsLoading, setAreProductsLoading] = useState(true);
 
   function addToCart(product) {
-    const data = cart;
+    const data = [...cart];
     data.push(product);
     setCart(data);
   }
