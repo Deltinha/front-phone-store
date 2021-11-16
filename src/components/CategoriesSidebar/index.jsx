@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -6,12 +7,12 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
 import ProductsContext from '../../contexts/productsContext';
-import { getCategories, getProductsByCategorie } from '../../services/phone-store-api';
+import { getCategories, getProductsByCategory } from '../../services/phone-store-api';
 import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
 
 function categoriesOrganizer(categories) {
-  const preferredOrder = ['Model', 'Color'];
+  const preferredOrder = ['Brand', 'Color', 'Model'];
   const sortedCategories = [];
 
   for (let i = 0; i < preferredOrder.length; i += 1) {
@@ -28,10 +29,10 @@ export default function CategoriesSideBar() {
   const { setAreProductsLoading, setProducts } = useContext(ProductsContext);
   const [categories, setCategories] = useState([]);
 
-  function updateProducts(categorie, value) {
+  function updateProducts(category, value) {
     setProducts([]);
     setAreProductsLoading(true);
-    getProductsByCategorie({ categorie, value })
+    getProductsByCategory({ category, value })
       .then((res) => {
         setProducts(res.data);
         setAreProductsLoading(false);
@@ -48,22 +49,22 @@ export default function CategoriesSideBar() {
 
   return (
     <S.Sidebar>
-      {categories.map((categorie, index) => {
-        if (categorie.type === 'Color') {
+      {categories.map((category, index) => {
+        if (category.type === 'Color') {
           return (
             <div key={index}>
-              <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
-              <ColorPickerCategorie colors={categorie.names} updateProducts={updateProducts} />
+              <S.CategoriesTitle>{category.type}</S.CategoriesTitle>
+              <ColorPickerCategorie colors={category.names} updateProducts={updateProducts} />
             </div>
           );
         }
         return (
           <div key={index}>
-            <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
-            {categorie.names.map((name, key) => (
+            <S.CategoriesTitle>{category.type}</S.CategoriesTitle>
+            {category.names.map((name, key) => (
               <S.CategorieName
                 key={key}
-                onClick={() => updateProducts(categorie.type, name)}
+                onClick={() => updateProducts(category.type.toLowerCase(), name)}
               >
                 {name}
               </S.CategorieName>
