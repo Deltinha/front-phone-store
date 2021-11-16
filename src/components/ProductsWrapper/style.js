@@ -1,17 +1,19 @@
 import styled from 'styled-components';
 
 const ProductsWrapper = styled.div`
-  width: 850px;
+  width: calc(100% - 22rem);
   display: flex;
   flex-direction: column;
 `;
 
 const ProductsTitle = styled.div`
-  font-size: 25px;
-  font-weight: 700;
-  color: #464646;
-  padding: 10px 0 20px 0;
+  font-size: 32px;
+  font-weight: 500;
+  color: #000;
+  padding: 10px 0 20px 20px;
   box-sizing: border-box;
+  text-align: left;
+  width: 70%;
 `;
 
 const ProductsList = styled.div`

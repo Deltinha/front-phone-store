@@ -23,9 +23,6 @@ export default function Header() {
   return (
     <S.TopBar>
       <S.LeftButtonsWrapper onClick={() => returnToHome()}>
-        <S.HomeButtonWrapper>
-          <RiHomeFill />
-        </S.HomeButtonWrapper>
         <span>
           PhoneStore
         </span>

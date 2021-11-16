@@ -41,19 +41,30 @@ export const PoductPrice = styled.div`
 
 export const DeleteButton = styled.div`
     margin-top: 15px;
+    &:hover{
+        color: var(--primary);
+        cursor: pointer;
+    }
 `;
 
 export const Quantity = styled.div`
     width: 50px;
+    font-size: 18px;   
     p{
-        font-size: 20px;   
         color: black;     
+    }
+    svg {
+        &:hover{
+        color: var(--primary);
+        cursor: pointer;
+        font-size: 20px;
+    }
     }
     width: 100px;
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    color: var(--primary);    
+    color: var(--detail);    
     div {
         width: 30px;
         height: 25px;

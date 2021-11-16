@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
 import Swal from 'sweetalert2';
 import React, { useState, useEffect, useContext } from 'react';
@@ -6,6 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 import { login } from '../../services/user.api';
 import * as S from './style';
 import UserContext from '../../contexts/userContext';
+import imgLogo from '../../assets/logo.svg';
 
 export default function Login() {
   const { user, setUser } = useContext(UserContext);
@@ -49,10 +49,10 @@ export default function Login() {
   return (
     <S.Center>
       <S.Content>
-        {/* <S.Logo src={imgLogo} alt="store logo"/> */}
-        <S.Register>
+        <S.Logo src={imgLogo} alt="store logo" />
+        <S.PageTitle>
           <h3>Login</h3>
-        </S.Register>
+        </S.PageTitle>
         <S.Form>
           <S.DivRegister>
             <input
@@ -75,9 +75,11 @@ export default function Login() {
             <button type="submit" onClick={submitForm}>Entrar</button>
           </S.DivRegister>
         </S.Form>
-        <S.Register>
-          <Link to="/register">Ainda não tem uma conta? Cadastre-se!</Link>
-        </S.Register>
+        <S.LinkTo>
+          <Link to="/register">
+            Ainda não tem uma conta? Cadastre-se!
+          </Link>
+        </S.LinkTo>
       </S.Content>
     </S.Center>
   );

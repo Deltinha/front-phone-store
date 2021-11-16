@@ -61,7 +61,7 @@ const GlobalStyle = createGlobalStyle`
     }
     html {
         background: #fffce3;
-        display:flex;
-        justify-content:center; }
+
+        }
 `;
 export default GlobalStyle;

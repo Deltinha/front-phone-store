@@ -23,7 +23,7 @@ export default function ProductBox({ product }) {
   return (
     <S.ProductDetail>
       <S.ProductImage src={firstImage.url} />
-      <div>
+      <S.InfoBox>
         {(value) && <h3>{`R$ ${value.toLocaleString('pt-br', { minimumFractionDigits: 2 })}`}</h3>}
         <S.ProductInfo>
           {(brand) && <h4>{brand}</h4>}
@@ -31,7 +31,7 @@ export default function ProductBox({ product }) {
           <h4>{description}</h4>
         </S.ProductInfo>
         <AddToCartButton product={product} />
-      </div>
+      </S.InfoBox>
     </S.ProductDetail>
   );
 }

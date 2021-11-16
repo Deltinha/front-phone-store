@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
 export const Page = styled.div`
@@ -42,7 +41,7 @@ export const CleanCart = styled.div`
     justify-content: center;
     border-radius: 2px;
     color: var(--detail);
-    height: 34px;
+    height: 42px;
     width: 220px;
     background-color: white;
     border: 1px solid var(--detail);
@@ -57,4 +56,25 @@ export const CleanCart = styled.div`
     font-weight: 500;
     cursor: pointer;
   }
+`;
+export const IsEmpt = styled.div`
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > p{
+        font-size: 20px;
+        text-align: center;
+        font-weight: 500;
+        color: var(--text);
+    }
+    a {
+      color: var(--detail);
+      &:hover{
+        color: var(--primary);
+      }
+    }
+
 `;

@@ -2,30 +2,29 @@ import styled from 'styled-components';
 
 export const ProductDetail = styled.div`
     display: inline-flex;
-    position: relative;
-    > div {
-        box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        width: 500px;
-        height: 300px;
-        right: 0;
-        top: 50%;
-        left: 80%;
-        transform: translate(0, -50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 35px;
-            h3 {
-                margin: 0.2rem 0;
-                font-weight: 700;
-                font-size: 1.3rem;
-                color: var(--primary);
-            }
-            
-        background-color: var(--tertiary);
-    }
+    justify-content: center;
+    align-items: center;
+`;
+
+export const InfoBox = styled.div`
+    margin-left: -5rem;
+    box-shadow: 6px 6px 15px 5px rgba(0, 0, 0, 0.1);
+    border: solid 1px var(--tertiary);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+        h3 {
+            margin: 0.2rem 0;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+    background-color: var(--secondary);
 `;
 
 export const ProductInfo = styled.div`
