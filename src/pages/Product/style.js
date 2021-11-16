@@ -4,6 +4,8 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     padding: 8rem;
+    min-height: calc(100vh - 50px);
+
 `;
 
 export const IsEmpt = styled.div`

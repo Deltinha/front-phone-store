@@ -6,6 +6,8 @@ export const Page = styled.div`
     justify-content: center;
     flex-direction: column;
     padding: 100px;
+    min-height: calc(100vh - 50px);
+
 `;
 
 export const Cart = styled.div`

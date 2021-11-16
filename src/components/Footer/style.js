@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const BottomBar = styled.div`
     width: 100%;
     background-color: var(--tertiary);
-    position: fixed;
+    position: static;
     bottom: 0;
     height: 50px;
     display: flex;
