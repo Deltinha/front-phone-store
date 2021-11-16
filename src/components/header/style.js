@@ -63,11 +63,8 @@ export const RightButtonsWrapper = styled.div`
 `;
 
 export const CartButtonWrapper = styled.div`
-<<<<<<< HEAD
     background-color: var(--primary);
     position: relative;
-=======
->>>>>>> main
 `;
 
 export const LogButtonWrapper = styled.div`
