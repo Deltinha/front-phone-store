@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const Sidebar = styled.div`
   height: 100%;
-  width: 252px;
-  display: flex;
+  min-height: 24rem;
+  width: 18rem;
+  display: inline-flex;
   flex-direction: column;
   gap: 12px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
