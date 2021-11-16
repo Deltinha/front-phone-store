@@ -48,22 +48,22 @@ export default function CategoriesSideBar() {
 
   return (
     <S.Sidebar>
-      {categories.map((categorie, index) => {
-        if (categorie.type === 'Color') {
+      {categories.map((category, index) => {
+        if (category.type === 'Color') {
           return (
             <div key={index}>
-              <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
-              <ColorPickerCategorie colors={categorie.names} updateProducts={updateProducts} />
+              <S.CategoriesTitle>{category.type}</S.CategoriesTitle>
+              <ColorPickerCategorie colors={category.names} updateProducts={updateProducts} />
             </div>
           );
         }
         return (
           <div key={index}>
-            <S.CategoriesTitle>{categorie.type}</S.CategoriesTitle>
-            {categorie.names.map((name, key) => (
+            <S.CategoriesTitle>{category.type}</S.CategoriesTitle>
+            {category.names.map((name, key) => (
               <S.CategorieName
                 key={key}
-                onClick={() => updateProducts(categorie.type, name)}
+                onClick={() => updateProducts(category.type, name)}
               >
                 {name}
               </S.CategorieName>
