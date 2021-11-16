@@ -6,6 +6,8 @@ export const Center = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: calc(100vh - 50px);
+
 `;
 
 export const Content = styled.div`

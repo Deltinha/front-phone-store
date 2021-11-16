@@ -34,7 +34,6 @@ export default function Login() {
     const body = {
       email, password,
     };
-
     if (emailIsValid) {
       login(body).then((res) => {
         setUser(res.data);

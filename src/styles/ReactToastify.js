@@ -76,7 +76,7 @@ export const ToastStyle = createGlobalStyle`
   transform: translateX(-50%);
 }
 .Toastify__toast-container--bottom-right {
-  bottom: 1em;
+  bottom: 2em;
   right: 1em;
 }
 

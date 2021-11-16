@@ -1,11 +1,13 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-nested-ternary */
-import Swal from 'sweetalert2';
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { createNewUser } from '../../services/user.api';
 import * as S from './style';
 import UserContext from '../../contexts/userContext';
 import imgLogo from '../../assets/logo.svg';
+import ToastError from '../../utils/toastError';
+import { Alert } from '../../utils/alertConfig';
 
 export default function Register() {
   const history = useHistory();
@@ -40,12 +42,13 @@ export default function Register() {
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
 
-  // const [firstNameIsValid, setFirstNameIsValid] = useState(false);
-  // const [lastNameIsValid, setLastNameIsValid] = useState(false);
-  // const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
-  // const [cpfIsValid, setCpfIsValid] = useState(false);
+  const [firstNameIsValid, setFirstNameIsValid] = useState(false);
+  const [lastNameIsValid, setLastNameIsValid] = useState(false);
+  const [phoneNumberIsValid, setPhoneNumberIsValid] = useState(false);
+  const [cpfIsValid, setCpfIsValid] = useState(false);
 
-  const [basicInfoIsValid, setBasicInfoIsValid] = useState(false);
+  const [cepIsValid, setCepIsValid] = useState(false);
+  const [adressNumberIsValid, setAdressNumberIsValid] = useState(false);
   const [addressIsValid, setAdressIsValid] = useState(false);
 
   useEffect(() => {
@@ -60,22 +63,21 @@ export default function Register() {
     setPasswordsMatch(
       !!(password === repeatPassword),
     );
-    setBasicInfoIsValid(
-      !!(
-        firstName
-        && lastName
-        && !!phoneNumber.match(/^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/)
-        && !!cpf.match(/([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/)
-      ),
-    );
+    setFirstNameIsValid(!!firstName);
+    setLastNameIsValid(!!lastName);
+    setPhoneNumberIsValid(!!phoneNumber.match(/^\s*(\d{2}|\d{0})[-. ]?(\d{5}|\d{4})[-. ]?(\d{4})[-. ]?\s*$/));
+    setCpfIsValid(!!cpf.match(/([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})/));
+
+    setCepIsValid(!!cep.match(/^[0-9]{8}$/));
+    setAdressNumberIsValid(!!addressNumber.match(/^[0-9]*$/));
     setAdressIsValid(
       !!(
-        !!cep.match(/^[0-9]{8}$/)
+        cep
         && state
         && city
         && neighborhood
         && street
-        && !!addressNumber.match(/^[0-9]*$/)
+        && addressNumber
       ),
     );
   }, [firstName,
@@ -94,6 +96,9 @@ export default function Register() {
   ]);
 
   const goToStep2 = () => {
+    if (!emailIsValid) return ToastError('Por favor, insira um e-mail válido.');
+    if (!passwordIsValid) return ToastError('Senha inválida.');
+    if (!passwordsMatch) return ToastError('As senhas não combinam');
     if (
       emailIsValid
       && passwordIsValid
@@ -104,10 +109,20 @@ export default function Register() {
     }
   };
   const goToStep3 = () => {
-    if (basicInfoIsValid) setIsStep2(false);
+    if (!firstNameIsValid) return ToastError('Seu nome é um campo obrigatório :)');
+    if (!lastNameIsValid) return ToastError('Seu sobrenome também é um campo obrigatório :)');
+    if (!phoneNumber) return ToastError('Seu número de telefone é importante caso precisemos entrar em contato :)');
+    if (!phoneNumberIsValid) return ToastError('O número de telefone que você inseriu não é válido :(');
+    if (!cpf) return ToastError('Precisamos do seu CPF por questões de segurança :)');
+    if (!cpfIsValid) return ToastError('O CPF que você inseriu não é válido :(');
+    if (firstNameIsValid && lastNameIsValid && phoneNumberIsValid && cpfIsValid) setIsStep2(false);
   };
   const submitForm = (e) => {
     e.preventDefault();
+    if (!addressIsValid) return ToastError('É preciso preencher todos os campos obrigatórios :(');
+    if (!cepIsValid) return ToastError('CEP inválido :(');
+    if (!adressNumberIsValid) return ToastError('O campo de número da residencia aceita apenas caracteres numéricos :)');
+
     const body = {
       firstName,
       lastName,
@@ -123,15 +138,14 @@ export default function Register() {
       cpf,
       phoneNumber,
     };
-
     if (addressIsValid) {
       createNewUser(body).then(() => {
         history.push('/login');
       }).catch(() => {
-        Swal.fire('Algo deu errado, por favor recarregue');
+        Alert.fire('Algo deu errado, por favor recarregue');
       });
     } else {
-      Swal.fire('Informações inválidas');
+      Alert.fire('Informações inválidas');
     }
   };
   return (
@@ -207,12 +221,10 @@ export default function Register() {
                   required
                 />
                 <button type="button" onClick={goToStep3}>Confirmar informações</button>
-
               </S.DivRegister>
             )
             : (
               <S.DivRegister>
-
                 <input
                   key="CEP"
                   type="text"
@@ -271,7 +283,6 @@ export default function Register() {
                 <button type="submit" onClick={submitForm}>Criar conta</button>
               </S.DivRegister>
             )
-
           )}
         </S.Form>
         <S.LinkTo>

@@ -5,6 +5,7 @@ import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import ProductsContext from './contexts/productsContext';
+import { Alert } from './utils/alertConfig';
 
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
@@ -29,9 +30,13 @@ export default function App() {
     getProducts()
       .then((res) => {
         setProducts(res.data);
-        setAreProductsLoading(false);
       })
-      .catch(() => setAreProductsLoading(false));
+      .catch(() => {
+        Alert.fire('Algo deu errado :( Por favor, recarregue a página.');
+      })
+      .finally(() => {
+        setAreProductsLoading(false);
+      });
   }
 
   return (

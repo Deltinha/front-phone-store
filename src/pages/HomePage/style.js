@@ -7,6 +7,8 @@ const HomePage = styled.div`
   justify-content: left;
   gap: 4rem;
   padding: 8rem;
+  min-height: calc(100vh - 50px);
+
 `;
 
 export { HomePage };
