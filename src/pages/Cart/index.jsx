@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable spaced-comment */
-/* eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
@@ -37,19 +34,23 @@ export default function Cart() {
         {Object.values(productList).map((product) => (
           <CartProduct product={product} />
         ))}
-        {!cart && (
-        <S.IsEmpt>
-          <p>
-            Seu carrinho está vazio.
-            Dê uma olhada nos nas
-            {' '}
-            <Link to="/">nossas ofertas!</Link>
-          </p>
-        </S.IsEmpt>
-        )}
-        {(Object.keys(productList).length > 0)
-          && <CheckoutButton products={Object.values(productList)} />}
-        <S.CleanCart onClick={() => setCart([])}>Limpar Carrinho</S.CleanCart>
+        {(cart.length === 0)
+          ? (
+            <S.IsEmpt>
+              <p>
+                Seu carrinho está vazio.
+                Dê uma olhada nos nas
+                {' '}
+                <Link to="/">nossas ofertas!</Link>
+              </p>
+            </S.IsEmpt>
+          )
+          : (
+            <>
+              <CheckoutButton products={Object.values(productList)} />
+              <S.CleanCart onClick={() => setCart([])}>Limpar Carrinho</S.CleanCart>
+            </>
+          )}
       </S.Cart>
     </S.Page>
   );
