@@ -4,6 +4,7 @@ import { FaTrash } from 'react-icons/fa';
 
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from 'react-icons/ai';
 import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 import CartContext from '../../contexts/cartContext';
 import getColorName from '../../services/color-name-api';
@@ -55,9 +56,11 @@ export default function CartProduct({ product }) {
         <img src={firstImage.url} alt="imagem do produto" />
       </S.ProductImage>
       <S.ProductDescription>
-        <h3>
-          {`${model} ${capacity} ${colorName}`}
-        </h3>
+        <Link to={`/product/${product.id}`}>
+          <h3>
+            {`${model} ${capacity} ${colorName}`}
+          </h3>
+        </Link>
         <p>
           {`${brand}`}
         </p>
