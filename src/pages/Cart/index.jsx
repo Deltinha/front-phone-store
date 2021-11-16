@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import * as S from './style';
 
 import CartContext from '../../contexts/cartContext';
@@ -10,7 +11,7 @@ export default function Cart() {
 
   const organizedProductList = {};
 
-  cart.forEach((item) => {
+  [...cart].forEach((item) => {
     if (organizedProductList[item.id]) {
       organizedProductList[item.id].quantity += 1;
     } else {
@@ -23,6 +24,16 @@ export default function Cart() {
       <S.Cart>
         <S.CartTitle>Carrinho de compras</S.CartTitle>
         {Object.values(organizedProductList).map((product) => <CartProduct product={product} />)}
+        {!cart && (
+        <S.IsEmpt>
+          <p>
+            Seu carrinho está vazio.
+            Dê uma olhada nos nas
+            {' '}
+            <Link to="/">nossas ofertas!</Link>
+          </p>
+        </S.IsEmpt>
+        )}
         <CheckoutButton products={Object.values(organizedProductList)} />
         <S.CleanCart>Limpar Carrinho</S.CleanCart>
       </S.Cart>
