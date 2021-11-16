@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import * as S from './style';
 import ProductBox from '../../components/productBox';
@@ -14,7 +14,7 @@ function Product() {
     productInfo.then((res) => {
       setProduct(res.data);
     }).catch(() => {
-      Swal.fire('Algo deu errado, por favor recarregue');
+      Swal.fire('Algo deu errado, por favor recarregue a página.');
     });
   }, []);
 
@@ -22,7 +22,16 @@ function Product() {
     <S.Container>
       {(product)
         ? <ProductBox product={product} />
-        : <p>produto indisponível</p>}
+        : (
+          <S.IsEmpt>
+            <p>
+              Produto  indisponível.
+              Dê uma olhada nos nas
+              {' '}
+              <Link to="/">nossas ofertas!</Link>
+            </p>
+          </S.IsEmpt>
+        )}
     </S.Container>
   );
 }
