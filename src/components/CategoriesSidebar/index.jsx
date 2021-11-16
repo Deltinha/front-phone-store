@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -6,7 +7,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
 import ProductsContext from '../../contexts/productsContext';
-import { getCategories, getProductsByCategorie } from '../../services/phone-store-api';
+import { getCategories, getProductsByCategory } from '../../services/phone-store-api';
 import ColorPickerCategorie from '../ColorCategorie';
 import * as S from './style';
 
@@ -28,10 +29,10 @@ export default function CategoriesSideBar() {
   const { setAreProductsLoading, setProducts } = useContext(ProductsContext);
   const [categories, setCategories] = useState([]);
 
-  function updateProducts(categorie, value) {
+  function updateProducts(category, value) {
     setProducts([]);
     setAreProductsLoading(true);
-    getProductsByCategorie({ categorie, value })
+    getProductsByCategory({ category, value })
       .then((res) => {
         setProducts(res.data);
         setAreProductsLoading(false);
@@ -63,7 +64,7 @@ export default function CategoriesSideBar() {
             {category.names.map((name, key) => (
               <S.CategorieName
                 key={key}
-                onClick={() => updateProducts(category.type, name)}
+                onClick={() => updateProducts(category.type.toLowerCase(), name)}
               >
                 {name}
               </S.CategorieName>
