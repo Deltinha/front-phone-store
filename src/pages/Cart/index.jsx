@@ -39,7 +39,7 @@ export default function Cart() {
             <S.IsEmpt>
               <p>
                 Seu carrinho está vazio.
-                Dê uma olhada nos nas
+                Dê uma olhada nas
                 {' '}
                 <Link to="/">nossas ofertas!</Link>
               </p>

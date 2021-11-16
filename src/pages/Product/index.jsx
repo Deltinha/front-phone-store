@@ -26,7 +26,7 @@ function Product() {
           <S.IsEmpt>
             <p>
               Produto  indisponível.
-              Dê uma olhada nos nas
+              Dê uma olhada nas
               {' '}
               <Link to="/">nossas ofertas!</Link>
             </p>
