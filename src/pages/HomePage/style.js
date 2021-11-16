@@ -7,7 +7,6 @@ const HomePage = styled.div`
   justify-content: left;
   gap: 4rem;
   padding: 8rem;
-  box-sizing: initial !important;
 `;
 
 export { HomePage };
