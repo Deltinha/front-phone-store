@@ -6,6 +6,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 import ProductsContext from '../../contexts/productsContext';
 import { getCategories, getProductsByCategory } from '../../services/phone-store-api';
 import ColorPickerCategorie from '../ColorCategorie';
@@ -35,15 +36,21 @@ export default function CategoriesSideBar() {
     getProductsByCategory({ category, value })
       .then((res) => {
         setProducts(res.data);
-        setAreProductsLoading(false);
       })
-      .catch(() => setAreProductsLoading(false));
+      .catch(() => {
+        Swal.fire('Algo deu errado :( Por favor, recarregue a página.');
+      })
+      .finally(() => {
+        setAreProductsLoading(false);
+      });
   }
 
   useEffect(() => {
     getCategories()
       .then((res) => {
         setCategories(categoriesOrganizer(res.data));
+      }).catch(() => {
+        Swal.fire('Algo deu errado :( Por favor, recarregue a página.');
       });
   }, []);
 

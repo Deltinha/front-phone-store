@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -27,9 +28,13 @@ export default function App() {
     getProducts()
       .then((res) => {
         setProducts(res.data);
-        setAreProductsLoading(false);
       })
-      .catch(() => setAreProductsLoading(false));
+      .catch(() => {
+        Swal.fire('Algo deu errado :( Por favor, recarregue a página.');
+      })
+      .finally(() => {
+        setAreProductsLoading(false);
+      });
   }
 
   return (

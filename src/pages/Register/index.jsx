@@ -207,12 +207,10 @@ export default function Register() {
                   required
                 />
                 <button type="button" onClick={goToStep3}>Confirmar informações</button>
-
               </S.DivRegister>
             )
             : (
               <S.DivRegister>
-
                 <input
                   key="CEP"
                   type="text"
@@ -271,7 +269,6 @@ export default function Register() {
                 <button type="submit" onClick={submitForm}>Criar conta</button>
               </S.DivRegister>
             )
-
           )}
         </S.Form>
         <S.LinkTo>
