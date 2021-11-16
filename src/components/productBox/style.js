@@ -26,6 +26,7 @@ export const InfoBox = styled.div`
         }
         
     background-color: var(--secondary);
+    padding: 40px;
 `;
 
 export const ProductInfo = styled.div`
