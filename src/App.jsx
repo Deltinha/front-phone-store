@@ -1,5 +1,7 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
 import useLocalStorage from './hooks/useLocalStorage';
@@ -57,6 +59,7 @@ export default function App() {
           <Router>
             <GlobalStyle />
             <Theme />
+            <ToastContainer />
             <Routes />
           </Router>
         </CartContext.Provider>
