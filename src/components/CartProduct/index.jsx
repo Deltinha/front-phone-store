@@ -19,9 +19,9 @@ export default function CartProduct({ product }) {
   useEffect(() => {
     getColorName(color)
       .then((res) => {
-        setColorName(res.data?.colors[0].name);
+        setColorName(res.data.colors[0].name);
       });
-  }, []);
+  }, [color]);
 
   const firstImage = productImages.find((img) => img.perspective === 'front');
   const { cart, setCart } = useContext(CartContext);
