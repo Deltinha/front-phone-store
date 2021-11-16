@@ -66,7 +66,7 @@ export const OverlayIconWrapper = styled.div`
     width: 50px;
     height: 50px;
     display: flex;
-    background-color: var(--secondary);
+    background-color: var(--detail);
     align-items: center;
     justify-content: center;
     border-radius: 4px;

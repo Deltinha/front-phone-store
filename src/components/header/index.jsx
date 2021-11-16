@@ -1,9 +1,6 @@
-/* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
-import {
-  RiUserAddFill, RiLoginBoxFill, RiHomeFill, RiLogoutBoxFill,
-} from 'react-icons/ri';
-import { BsCartFill } from 'react-icons/bs';
+import React, { useContext } from 'react';
+import { RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';
+import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 import ProductsContext from '../../contexts/productsContext';
 import UserContext from '../../contexts/userContext';
@@ -37,7 +34,7 @@ export default function Header() {
           : (
             <>
               <S.RegisterButtonWrapper onClick={() => history.push('/register')}>
-                <RiUserAddFill />
+                <FaUserPlus />
               </S.RegisterButtonWrapper>
               <S.LogButtonWrapper onClick={() => history.push('/login')}>
                 <RiLoginBoxFill />
@@ -45,7 +42,7 @@ export default function Header() {
             </>
           )}
         <S.CartButtonWrapper onClick={() => history.push('/cart')}>
-          <BsCartFill />
+          <FaShoppingCart />
           {cart.length > 0
             && (
               <S.CartItemCount>

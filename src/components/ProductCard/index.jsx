@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { BsCartPlusFill, BsSearch } from 'react-icons/bs';
+import { FaCartPlus, FaSearch } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import getColorName from '../../services/color-name-api';
 import * as S from './style';
@@ -80,10 +80,10 @@ export default function ProductCard({ product }) {
         </S.Price>
         <S.BlackOverlay visibility={blackOverlayVisible}>
           <S.OverlayIconWrapper onClick={() => history.push(`/product/${id}`)}>
-            <BsSearch />
+            <FaSearch />
           </S.OverlayIconWrapper>
           <S.OverlayIconWrapper onClick={() => addProductToCart()}>
-            <BsCartPlusFill />
+            <FaCartPlus />
           </S.OverlayIconWrapper>
         </S.BlackOverlay>
       </div>
