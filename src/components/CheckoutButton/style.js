@@ -14,12 +14,9 @@ export const CheckoutButton = styled.button`
       font-size: 18px;
         margin: auto;
         color: white;
-        :hover{
-          font-weight: 500;
-        }
     }
-
     :hover {
+      font-weight: 500;
       svg {
         animation: bounce 300ms ease infinite;
         @keyframes bounce {
