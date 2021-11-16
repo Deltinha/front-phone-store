@@ -1,15 +1,17 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import React, { useState } from 'react';
-import Swal from 'sweetalert2';
+import { ToastContainer } from 'react-toastify';
 import UserContext from './contexts/userContext';
 import CartContext from './contexts/cartContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import ProductsContext from './contexts/productsContext';
+import { Alert } from './utils/alertConfig';
 
 import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
 import Routes from './Routes';
 import { getProducts } from './services/phone-store-api';
+import { ToastStyle } from './styles/ReactToastify';
 
 export default function App() {
   const [user, setUser] = useLocalStorage('@phone-store-user', {});
@@ -30,7 +32,7 @@ export default function App() {
         setProducts(res.data);
       })
       .catch(() => {
-        Swal.fire('Algo deu errado :( Por favor, recarregue a página.');
+        Alert.fire('Algo deu errado :( Por favor, recarregue a página.');
       })
       .finally(() => {
         setAreProductsLoading(false);
@@ -62,6 +64,8 @@ export default function App() {
           <Router>
             <GlobalStyle />
             <Theme />
+            <ToastStyle />
+            <ToastContainer />
             <Routes />
           </Router>
         </CartContext.Provider>

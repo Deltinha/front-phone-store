@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import CartContext from '../../contexts/cartContext';
 import useAuthConfig from '../../hooks/useAuth';
 import { postCheckout } from '../../services/phone-store-api';
+import { Alert } from '../../utils/alertConfig';
 import * as S from './style';
 
 export default function CheckoutButton({ products }) {
@@ -22,7 +23,7 @@ export default function CheckoutButton({ products }) {
   const headers = useAuthConfig();
 
   function successAlert() {
-    Swal.fire(
+    Alert.fire(
       'Tudo certo!',
       'Compra finalizada!',
       'success',
@@ -30,15 +31,8 @@ export default function CheckoutButton({ products }) {
   }
 
   async function processError(status) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'alert-btn alert-btn-success',
-      },
-      buttonsStyling: false,
-    });
-
     if (status === 401) {
-      return swalWithBootstrapButtons.fire({
+      return Alert.fire({
         title: 'Oops...',
         text: 'Você não está logado!',
         icon: 'error',

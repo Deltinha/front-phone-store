@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { BsCartPlusFill, BsSearch } from 'react-icons/bs';
+import { FaCartPlus, FaSearch } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 import getColorName from '../../services/color-name-api';
 import * as S from './style';
+import CartContext from '../../contexts/cartContext';
+import { getProductById } from '../../services/phone-store-api';
 
 export default function ProductCard({ product }) {
   const {
@@ -15,6 +18,39 @@ export default function ProductCard({ product }) {
   const [colorName, setColorName] = useState('');
   const [blackOverlayVisible, setBlackOverlayVisible] = useState(false);
   const history = useHistory();
+  const { addToCart } = useContext(CartContext);
+
+  function cartAlert(input) {
+    if (input === 'success') {
+      return toast.success('Adicionado ao carrinho!', {
+        position: 'bottom-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+    return toast.error('Houve um problema!', {
+      position: 'bottom-right',
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
+  function addProductToCart() {
+    getProductById(product.id)
+      .then((res) => {
+        addToCart(res.data);
+        cartAlert('success');
+      })
+      .catch(() => cartAlert('error'));
+  }
 
   useEffect(() => {
     getColorName(color)
@@ -44,10 +80,10 @@ export default function ProductCard({ product }) {
         </S.Price>
         <S.BlackOverlay visibility={blackOverlayVisible}>
           <S.OverlayIconWrapper onClick={() => history.push(`/product/${id}`)}>
-            <BsSearch />
+            <FaSearch />
           </S.OverlayIconWrapper>
-          <S.OverlayIconWrapper onClick={() => (false)}>
-            <BsCartPlusFill />
+          <S.OverlayIconWrapper onClick={() => addProductToCart()}>
+            <FaCartPlus />
           </S.OverlayIconWrapper>
         </S.BlackOverlay>
       </div>
